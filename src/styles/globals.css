@@ -1,0 +1,414 @@
+/* ============================================================================
+   Nusca — globals.css
+   Design tokens · base · app shell · sidebar · buttons · print
+   PENTING: semua media query responsif pakai `screen` agar print = desktop.
+   ========================================================================== */
+
+:root {
+  --font: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  --bg: #f4f7fa;
+  --bg-soft: #eef3f7;
+  --card: #ffffff;
+
+  --ink: #0f172a;
+  --ink-2: #334155;
+  --ink-soft: #64748b;
+  --muted: #94a3b8;
+  --faint: #cbd5e1;
+  --line: #e8eef3;
+  --line-2: #eff3f7;
+
+  --forest: #2f5d4f;
+  --forest-d: #234c40;
+  --ink-btn: #15231d;
+
+  --green: #16a34a;
+  --green-d: #15803d;
+  --green-soft: #e9f6ee;
+  --green-soft-2: #f0f9f3;
+
+  /* Skor Nutri-Level resmi Kemenkes (A–D) */
+  --nl-a: #1a7a3d;
+  --nl-b: #7ab829;
+  --nl-c: #f4a81d;
+  --nl-d: #c0241b;
+  --na: #94a3b8;
+  --nl-a-t: #d8efe0;
+  --nl-b-t: #e4f1cf;
+  --nl-c-t: #fdeecb;
+  --nl-d-t: #f6d6d3;
+
+  --blue: #2563eb;
+  --blue-d: #1d4ed8;
+  --blue-title: #2f7dc9;
+  --indigo: #353c98;
+  --indigo-2: #2c2f78;
+
+  --amber: #f59e0b;
+  --red: #ef4444;
+  --red-soft: #fdecec;
+  --red-ink: #c0241b;
+  --blue-soft: #e8f1fe;
+
+  --r-sm: 12px;
+  --r: 16px;
+  --r-lg: 22px;
+  --r-xl: 26px;
+
+  --sh-sm: 0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.05);
+  --sh: 0 6px 22px rgba(15,23,42,.07);
+  --sh-md: 0 12px 34px rgba(15,23,42,.09);
+  --sh-lg: 0 22px 60px rgba(15,23,42,.14);
+
+  --sb-w: 280px;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+h1,h2,h3,h4,h5,p { margin: 0; }
+button { font-family: inherit; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+/* ── App shell ─────────────────────────────────────────────── */
+.ns-app { position: relative; min-height: 100vh; }
+
+.ns-app::before {
+  content: '';
+  position: fixed;
+  top: -180px; right: -140px;
+  width: 620px; height: 620px;
+  background: radial-gradient(circle at center, rgba(34,197,94,.14), rgba(34,197,94,0) 62%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Main area menyesuaikan lebar body bukan seluruh viewport */
+.ns-main {
+  position: relative;
+  z-index: 1;
+  margin-left: var(--sb-w);
+  min-height: 100vh;
+  padding: 30px 40px 64px;
+  transition: margin-left .32s cubic-bezier(.4,0,.2,1);
+}
+.ns-app.sb-collapsed .ns-main { margin-left: 0; }
+
+.ns-home, .ns-crop, .ns-result, .ns-processing { max-width: 1180px; margin: 0 auto; }
+
+/* ── Sidebar ────────────────────────────────────────────────── */
+.ns-sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: var(--sb-w);
+  height: 100vh;
+  background: #fff;
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  padding: 22px 20px;
+  z-index: 60;
+  transform: none;
+  transition: transform .32s cubic-bezier(.4,0,.2,1);
+  overflow-y: auto;
+}
+.ns-app.sb-collapsed .ns-sidebar { transform: translateX(-100%); }
+
+.ns-sidebar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 26px;
+}
+.ns-brand { display: flex; align-items: center; gap: 11px; }
+.ns-logo {
+  width: 42px; height: 42px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-sm);
+  display: grid; place-items: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.ns-logo img { width: 30px; height: 30px; object-fit: contain; }
+
+/* Logo lockup bergaya produk */
+.ns-brand-text { display: flex; flex-direction: column; min-width: 0; }
+.ns-brand-name {
+  font-weight: 800; font-size: 18px; letter-spacing: -.2px;
+  color: var(--green-d); line-height: 1.1;
+}
+/* Nama aplikasi dua warna: "Nus" biru dongker, "ca" hijau */
+.ns-brand-name .ns-bn-blue,
+.ns-footer-brand .ns-bn-blue,
+.ns-bn-blue { color: #1d3a73; }
+.ns-brand-name .ns-bn-green,
+.ns-footer-brand .ns-bn-green,
+.ns-bn-green { color: var(--green); }
+.ns-brand-sub {
+  font-size: 10.5px; color: var(--muted); font-weight: 600;
+  letter-spacing: .01em; line-height: 1.3; white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis;
+}
+
+.ns-sb-close {
+  position: fixed;
+  left: 0; bottom: 24px;
+  z-index: 70;
+  width: 46px; height: 46px;
+  border-radius: 0 14px 14px 0;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink-soft);
+  display: grid; place-items: center;
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s, transform .15s;
+}
+.ns-sb-close:hover { background: var(--bg-soft); color: var(--ink); border-color: var(--faint); transform: translateX(1px); }
+
+/* Tombol mengambang untuk membuka sidebar */
+.ns-sb-open {
+  position: fixed;
+  left: 0; bottom: 24px; top: auto;
+  z-index: 65;
+  height: 46px;
+  padding: 0 14px 0 12px;
+  display: inline-flex; align-items: center;
+  border: none;
+  border-radius: 0 14px 14px 0;
+  background: linear-gradient(180deg, var(--forest), var(--forest-d));
+  color: #fff;
+  cursor: pointer;
+  box-shadow: var(--sh-md);
+  transition: padding .15s, filter .15s;
+}
+.ns-sb-open:hover { padding-left: 17px; filter: brightness(1.06); }
+
+.ns-progress-label {
+  font-size: 11.5px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 18px;
+}
+
+/* Langkah progres */
+.ns-steps { display: flex; flex-direction: column; }
+.ns-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 13px;
+  padding-bottom: 24px;
+}
+.ns-step:last-child { padding-bottom: 6px; }
+.ns-step-rail {
+  position: absolute;
+  left: 19px; top: 42px; bottom: 6px;
+  width: 2px;
+  background: var(--line);
+  border-radius: 2px;
+}
+.ns-step:last-child .ns-step-rail { display: none; }
+.ns-step.done .ns-step-rail { background: #bfe6cd; }
+
+.ns-dot {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  background: #fff;
+  color: var(--muted);
+  display: grid; place-items: center;
+  position: relative;
+  z-index: 1;
+  transition: all .2s;
+}
+.ns-dot svg { width: 18px; height: 18px; }
+.ns-step.active .ns-dot {
+  background: var(--forest-d);
+  border-color: var(--forest-d);
+  color: #fff;
+  box-shadow: 0 0 0 4px rgba(35,76,64,.12);
+}
+.ns-step.done .ns-dot { background: var(--green); border-color: var(--green); color: #fff; }
+
+/* Animasi pulse membesar-mengecil pada ikon aktif */
+.ns-dot-pulse {
+  animation: ns-dot-pulse 1.6s ease-in-out infinite;
+}
+@keyframes ns-dot-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 4px rgba(35,76,64,.12); }
+  50% { transform: scale(1.18); box-shadow: 0 0 0 8px rgba(35,76,64,.06); }
+}
+
+.ns-step-info { padding-top: 2px; }
+.ns-step-title { font-weight: 700; font-size: 15px; color: var(--muted); line-height: 1.2; }
+.ns-step-sub { font-size: 12.5px; color: var(--faint); margin-top: 2px; }
+.ns-step.active .ns-step-title { color: var(--ink); }
+.ns-step.active .ns-step-sub { color: var(--green-d); font-weight: 600; }
+.ns-step.done .ns-step-title { color: var(--ink-2); }
+.ns-step.done .ns-step-sub { color: var(--green-d); }
+
+/* Status sidebar bawah */
+.ns-sidebar-status { margin-top: 14px; }
+.ns-status-pill {
+  display: flex; align-items: center; gap: 9px;
+  background: var(--green-soft);
+  color: var(--green-d);
+  border: 1px solid #cfeada;
+  border-radius: 13px;
+  padding: 12px 14px;
+  font-size: 13.5px; font-weight: 600;
+}
+.ns-status-glow {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 4px rgba(22,163,74,.18);
+  flex-shrink: 0;
+  animation: ns-glow-pulse 2s ease-in-out infinite;
+}
+@keyframes ns-glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(22,163,74,.18); }
+  50% { box-shadow: 0 0 0 8px rgba(22,163,74,.06); }
+}
+.ns-mode-line {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 11.5px; color: var(--muted);
+  margin-top: 10px; padding-left: 2px;
+}
+.ns-mode-line span { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); flex-shrink: 0; }
+.ns-mode-line.model { color: var(--green-d); }
+.ns-mode-line.model span { background: var(--green); }
+.ns-mode-line.demo span { background: var(--amber); }
+
+.ns-backdrop { display: none; }
+
+/* ── Tombol ─────────────────────────────────────────────────── */
+.ns-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  padding: 12px 18px;
+  font-size: 15px; font-weight: 700; line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: filter .15s, background .15s, border-color .15s, color .15s, transform .05s, box-shadow .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.ns-btn:active { transform: translateY(1px); }
+.ns-btn:disabled { opacity: .55; cursor: not-allowed; }
+.ns-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+.ns-btn.primary {
+  background: linear-gradient(180deg, #1aa850, #15863e);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(21,134,62,.25);
+}
+.ns-btn.primary:not(:disabled):hover { filter: brightness(1.05); }
+
+.ns-btn.dark { background: var(--ink-btn); color: #fff; }
+.ns-btn.dark:hover { background: #1f352c; }
+
+.ns-btn.outline { background: #fff; border-color: var(--line); color: var(--ink-2); }
+.ns-btn.outline:hover { border-color: var(--faint); background: #fcfdfe; }
+
+.ns-btn.light { background: #f1f5f9; border-color: var(--line); color: var(--ink-2); }
+.ns-btn.light:hover { background: #e9eef4; }
+
+.ns-btn.soft { background: #eef1f5; color: var(--ink-2); }
+.ns-btn.soft:hover { background: #e5e9ef; }
+
+.ns-btn.ghost { background: #fff; border-color: var(--line); color: var(--ink-2); }
+.ns-btn.ghost:hover { background: var(--bg-soft); }
+
+.ns-btn.blue {
+  background: linear-gradient(180deg, #2f7cf0, #1d4ed8);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(37,99,235,.28);
+}
+.ns-btn.blue:hover { filter: brightness(1.05); }
+
+.ns-btn.sm { padding: 9px 14px; font-size: 13.5px; }
+.ns-btn.sm svg { width: 16px; height: 16px; }
+.ns-btn.lg { padding: 16px 26px; font-size: 16px; border-radius: 14px; }
+.ns-btn.block { width: 100%; }
+
+.ns-icon-btn {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink-soft);
+  display: grid; place-items: center;
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+  flex-shrink: 0;
+}
+.ns-icon-btn:hover { background: var(--bg-soft); color: var(--ink); border-color: var(--faint); }
+.ns-icon-btn.square { width: 44px; height: 44px; border-radius: 12px; }
+
+/* ── Responsif (screen only) ───────────────────────────────── */
+@media screen and (max-width: 1023px) {
+  .ns-sidebar {
+    width: 300px;
+    max-width: 86vw;
+    transform: translateX(-100%);
+    box-shadow: var(--sh-lg);
+  }
+  .ns-sidebar.open { transform: none; }
+  .ns-main { margin-left: 0; padding: 22px 18px 56px; }
+  .ns-app.sb-collapsed .ns-main { margin-left: 0; }
+
+  .ns-backdrop {
+    display: block;
+    position: fixed; inset: 0;
+    background: rgba(15,23,42,.46);
+    z-index: 55;
+    opacity: 0; pointer-events: none;
+    transition: opacity .3s;
+  }
+  .ns-app:not(.sb-collapsed) .ns-backdrop { opacity: 1; pointer-events: auto; }
+}
+
+@media screen and (max-width: 600px) {
+  .ns-main { padding: 18px 14px 48px; }
+  .ns-btn { font-size: 14.5px; padding: 12px 16px; }
+  .ns-btn.lg { padding: 15px 20px; font-size: 15.5px; }
+}
+
+/* ══════════════════ PRINT ══════════════════════════════════ */
+@media print {
+  @page { size: A4 portrait; margin: 9mm; }
+  html, body { background: #fff !important; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+  /* Sembunyikan kerangka aplikasi & kontrol interaktif */
+  .ns-app::before { display: none !important; }
+  .ns-sidebar, .ns-backdrop, .ns-sb-open, .ns-sb-close { display: none !important; }
+  .ns-header-actions, .ns-result-footer, .ns-analyzed-full, .ns-lightbox { display: none !important; }
+
+  /* Kanvas cetak = lebar penuh tanpa offset sidebar */
+  .ns-main { margin-left: 0 !important; padding: 0 !important; min-height: 0 !important; }
+
+  /* PENTING — PDF dicetak persis seperti tampilan desktop: tata letak desktop
+     (grid multi-kolom) dipertahankan, lalu seluruh halaman diperkecil dengan
+     `zoom` agar muat dalam satu lebar kertas. Media query layar (max-width)
+     tidak berlaku saat print, sehingga yang dirender adalah versi desktop. */
+  .ns-result { zoom: 0.6; padding-bottom: 0 !important; }
+
+  /* Kartu tetap utuh, tidak terpotong di batas halaman */
+  .ns-grade-card, .ns-ggl-card, .ns-result-card,
+  .ns-chart-card, .ns-tips-card { break-inside: avoid; }
+}
