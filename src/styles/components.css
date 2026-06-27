@@ -803,11 +803,18 @@
     align-items: flex-start;
   }
   .ns-hero-text {
-    max-width: min(100%, 340px);
+    max-width: min(100%, 300px);
   }
   .ns-hero-text h1 {
     letter-spacing: -1px;
-    font-size: clamp(38px, 8.5cqi, 50px);
+    font-size: clamp(22px, 6.5cqi, 30px);
+    line-height: 1.05;
+  }
+  .ns-hero-text h1 br { display: none; }
+  .ns-hero-title-line {
+    display: inline-block;
+    white-space: nowrap;
+    font-size: clamp(22px, 6.5cqi, 30px);
   }
   .ns-hero-text p { font-size: 14px; }
   .ns-hero-btns {
@@ -822,13 +829,20 @@
     font-size: 14px;
   }
   .ns-hero-btns .ns-btn svg { width: 16px; height: 16px; }
+  .ns-btn-info {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px;
+  }
+  .ns-btn-info svg { margin-right: 0; }
+  .ns-btn-info .ns-btn-text { display: none; }
   .ns-hero-art {
     justify-items: center;
     width: 100%;
   }
   .ns-hero-art img {
     width: 100%;
-    max-width: 100px;
+    max-width: 56px;
     height: auto;
   }
   .ns-how-grid { grid-template-columns: 1fr; gap: 14px; }

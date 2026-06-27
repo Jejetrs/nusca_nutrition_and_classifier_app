@@ -64,7 +64,7 @@ export default function HomeScreen({ onPhoto }) {
             <BadgeCheck /> Kesehatan Dimulai dari Apa yang Anda Minum
           </div>
           <h1>
-            Kenali Nutrisi
+            <span className="ns-hero-title-line">Kenali Nutrisi</span>
             <br />
             <span className="t-green">Minuman</span>
           </h1>
@@ -76,8 +76,8 @@ export default function HomeScreen({ onPhoto }) {
             <button className="ns-btn dark" onClick={scrollHow}>
               Lihat Cara Kerja
             </button>
-            <button className="ns-btn outline" onClick={() => setDialog(true)}>
-              <InfoIcon /> Tentang Nutri-Level
+            <button className="ns-btn outline ns-btn-info" onClick={() => setDialog(true)}>
+              <InfoIcon /> <span className="ns-btn-text">Tentang Nutri-Level</span>
             </button>
           </div>
         </div>
@@ -173,7 +173,7 @@ export default function HomeScreen({ onPhoto }) {
           <span className="ns-bn-blue">Nus</span><span className="ns-bn-green">ca</span>
         </div>
         <div className="ns-footer-note">
-          © 2025 Nusca AI. Platform analisis nutrisi berbasis AI.
+          © 2025 Nusca AI. Platform analisis nutrisi minuman kemasanberbasis AI.
         </div>
       </footer>
 
