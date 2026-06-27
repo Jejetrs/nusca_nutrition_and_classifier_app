@@ -797,13 +797,33 @@
 
 @media screen and (max-width: 600px) {
   /* Hero tetap 2 kolom: gambar di samping teks dan ikut mengecil saat menyempit */
-  .ns-hero { gap: 14px; }
+  .ns-hero {
+    gap: 14px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 240px);
+    align-items: start;
+  }
+  .ns-hero-text {
+    max-width: min(100%, 360px);
+  }
   .ns-hero-text h1 {
     letter-spacing: -1px;
-    font-size: clamp(34px, 8.5cqi, 46px);
+    font-size: clamp(36px, 8.5cqi, 48px);
   }
-  .ns-hero-text p { font-size: 13.5px; }
-  .ns-hero-art img { max-width: 280px; }
+  .ns-hero-text p { font-size: 14px; }
+  .ns-hero-btns {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+  .ns-hero-btns .ns-btn {
+    width: auto;
+    min-width: 0;
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+  .ns-hero-btns .ns-btn svg { width: 16px; height: 16px; }
+  .ns-hero-art img { width: 100%; max-width: 240px; }
+  .ns-hero-art { justify-items: center; }
   .ns-how-grid { grid-template-columns: 1fr; gap: 14px; }
   .ns-how-card { grid-template-columns: auto 1fr; padding: 18px 16px; }
   .ns-how-card h4 { font-size: 17px; }
