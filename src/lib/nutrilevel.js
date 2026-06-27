@@ -153,8 +153,8 @@ export function buildAlerts(calc, fields) {
     const lv = calc.level[key]
     if (lv === 'C' || lv === 'D') {
       const raw = fields[key] != null && fields[key] !== '' ? fields[key] : key === 'lemak_jenuh' ? '0' : '?'
-      const p = calc.pct_harian_kemasan[pctKey[key]]
       const p100 = calc.per100[key]
+      const p = p100 != null ? calc.pct_harian_kemasan[pctKey[key]] : null
       const p100s = p100 != null ? `${commaDecimal(p100)} ${unit[key]}/100 ml` : ''
       if (p != null) {
         out.push(

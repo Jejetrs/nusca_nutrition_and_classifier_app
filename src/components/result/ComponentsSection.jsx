@@ -39,8 +39,10 @@ function ComponentCard({ comp, calc, fields }) {
   const insight = componentInsight(fkey, lv)
   const bounds = scaleBounds(fkey)
 
+  const hasField = fields[fkey] != null && fields[fkey] !== ''
   const valTxt = p100 != null ? `${commaDecimal(p100)} ${unit} / 100 ml` : 'per 100 ml tidak tersedia'
-  const raw = fields[fkey] != null && fields[fkey] !== '' ? fields[fkey] : fkey === 'lemak_jenuh' ? '0' : '—'
+  const raw = hasField ? fields[fkey] : fkey === 'lemak_jenuh' ? '0' : '—'
+  const showPct = hasField && p100 != null && pv != null
   const kemVal = kemKey && calc.per_kemasan ? calc.per_kemasan[kemKey] : null
   const kemTxt = kemVal != null ? `${asIs(kemVal)} ${unit}` : null
 
@@ -61,7 +63,7 @@ function ComponentCard({ comp, calc, fields }) {
         <div className="ns-ggl-badge">
           <div className="ns-ggl-badge-circle" style={{ background: col }}>{lv || '?'}</div>
           <div className="ns-ggl-badge-info">
-            <b>{pv != null ? pctStr(pv) : '—'}</b>
+            <b>{showPct ? pctStr(pv) : '—'}</b>
             <small>{title.toLowerCase()}</small>
           </div>
         </div>

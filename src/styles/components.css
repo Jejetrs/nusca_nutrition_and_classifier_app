@@ -798,8 +798,12 @@
 @media screen and (max-width: 600px) {
   /* Hero tetap 2 kolom: gambar di samping teks dan ikut mengecil saat menyempit */
   .ns-hero { gap: 14px; }
-  .ns-hero-text h1 { letter-spacing: -1px; }
+  .ns-hero-text h1 {
+    letter-spacing: -1px;
+    font-size: clamp(34px, 8.5cqi, 46px);
+  }
   .ns-hero-text p { font-size: 13.5px; }
+  .ns-hero-art img { max-width: 280px; }
   .ns-how-grid { grid-template-columns: 1fr; gap: 14px; }
   .ns-how-card { grid-template-columns: auto 1fr; padding: 18px 16px; }
   .ns-how-card h4 { font-size: 17px; }

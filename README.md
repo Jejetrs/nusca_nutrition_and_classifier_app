@@ -82,8 +82,7 @@ Semua komunikasi ke backend ada di `src/api/client.js`, dengan dua endpoint:
 
 **URL backend** ditentukan oleh variabel lingkungan `VITE_API_BASE`:
 
-- **Dikosongkan (default):** memakai backend Hugging Face yang sudah ter-deploy
-  (`https://jejetrs-nuscaapp.hf.space`), sehingga aplikasi langsung jalan.
+- **Dikosongkan (default):** memakai backend Hugging Face yang sudah ter-deploy sehingga aplikasi langsung jalan.
 - **Diisi `/api`:** memakai proxy Vite ke backend lokal di port `8080` (sudah
   diatur di `vite.config.js`) — berguna saat mengembangkan backend secara lokal.
 - **Diisi URL penuh:** memakai backend terpisah, mis.
@@ -95,7 +94,7 @@ Untuk deploy ke Vercel:
 - Gunakan URL backend produksi, misalnya:
 
 ```text
-VITE_API_BASE=https://jejetrs-nuscaapp.hf.space
+VITE_API_BASE=https://example.hf.space
 ```
 
 Pastikan file `.env` tidak dicommit. Gunakan `.env.example` sebagai template

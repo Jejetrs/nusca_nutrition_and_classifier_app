@@ -154,7 +154,8 @@ export default function LabelBreakdown({ calc, fields, panelImage, mode }) {
             const display = p100 != null ? `${commaDecimal(p100)}${unit}` : '—'
             const lv = calc.level[lvKey]
             const pv = calc.pct_harian_kemasan[pctKey]
-            const fill = pv != null ? Math.min(pv, 100) : 0
+            const showPct = p100 != null && pv != null
+            const fill = showPct ? Math.min(pv, 100) : 0
             return (
               <div className="ns-calc-row" key={name}>
                 <div className="ns-calc-top">
@@ -165,7 +166,7 @@ export default function LabelBreakdown({ calc, fields, panelImage, mode }) {
                 <div className="ns-calc-bar">
                   <div style={{ width: `${fill}%`, background: color }} />
                 </div>
-                <div className="ns-calc-daily">{pv != null ? pctStr(pv) : '—'} NILAI HARIAN</div>
+                <div className="ns-calc-daily">{showPct ? pctStr(pv) : '—'} NILAI HARIAN</div>
               </div>
             )
           })}
