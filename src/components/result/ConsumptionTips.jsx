@@ -1,6 +1,6 @@
 import { consumptionTips } from '../../lib/nutrilevel.js'
 
-// Kartu "Saran Konsumsi" — indigo gelap, heading di kiri + 3 kolom saran.
+// Kartu "Saran Konsumsi" — heading di kiri + 3 kolom saran.
 export default function ConsumptionTips({ calc }) {
   const t = consumptionTips(calc)
   return (
