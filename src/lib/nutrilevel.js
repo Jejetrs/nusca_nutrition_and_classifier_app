@@ -175,6 +175,14 @@ export function buildAlerts(calc, fields) {
 
 // ── Saran konsumsi (3 kolom) ─────────────────────────────────────────────────
 export function consumptionTips(calc) {
+  if (!calc.level_akhir) {
+    return {
+      time: 'Tidak ada saran',
+      limit: 'Tidak ada saran',
+      alt: 'Tidak ada saran',
+    }
+  }
+
   const lv = calc.level
   const vol = calc.vol_ml != null ? calc.vol_ml : '—'
 

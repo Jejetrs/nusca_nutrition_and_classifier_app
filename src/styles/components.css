@@ -870,4 +870,17 @@
   .ns-scan-wrap { width: 200px; height: 200px; }
   .ns-fruit { font-size: 28px; }
   .ns-loader-pill { font-size: 14.5px; padding: 14px 22px; }
+  .ns-step-row { gap: 10px; }
+  .ns-step-left {
+    gap: 10px;
+    font-size: 14px;
+  }
+  .ns-step-status {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .ns-chart-sub {
+    font-size: 10px;
+    letter-spacing: .04em;
+  }
 }

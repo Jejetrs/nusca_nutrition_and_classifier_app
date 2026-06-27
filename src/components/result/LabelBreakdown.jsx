@@ -129,13 +129,9 @@ export default function LabelBreakdown({ calc, fields, panelImage, mode }) {
           <div className="ns-bd-eyebrow">Kandungan Gizi</div>
           {NUTRIENTS.map(([label, key, unit]) => {
             const n = numericPart(fields[key])
-            const missingSaturated = key === 'lemak_jenuh' && (fields[key] === null || fields[key] === undefined || fields[key] === '')
-            // Tampilkan nilai apa adanya hasil deteksi (16,0 -> "16"; 4,5 -> "4,5").
-            // Jika label lemak jenuh tidak ditemukan, asumsikan nilai 0.
-            const display = n != null
+            const hasValue = n != null
+            const display = hasValue
               ? `${String(Number(n)).replace('.', ',')} ${unit}`
-              : missingSaturated
-              ? `0 ${unit}`
               : '—'
             return (
               <div className="ns-nutrient-row" key={key}>
