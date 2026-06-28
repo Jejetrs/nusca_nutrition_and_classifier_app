@@ -6,6 +6,13 @@ import NutriLevelDialog from '../result/NutriLevelDialog.jsx'
 const ACCEPT = ['image/jpeg', 'image/png', 'image/webp', 'image/bmp']
 const MAX_MB = 5
 
+const PHOTO_TIPS = [
+  { title: 'Cahaya Merata', desc: 'Hindari pantulan dan bayangan agar teks label terlihat jelas oleh kamera.' },
+  { title: 'Posisi Lurus', desc: 'Pegang kemasan tegak lurus di depan kamera — jangan miring atau bersudut.' },
+  { title: 'Label Utuh', desc: 'Pastikan tabel Informasi Nilai Gizi tidak terlipat, basah, atau tertutup.' },
+  { title: 'Tangan Stabil', desc: 'Tahan kamera sebentar agar hasil foto tajam dan tidak buram.' },
+]
+
 // Deteksi perangkat mobile berdasarkan user-agent dan pointer kasar
 function isMobileDevice() {
   if (typeof navigator === 'undefined') return false
@@ -57,33 +64,35 @@ export default function HomeScreen({ onPhoto }) {
 
   return (
     <div className="ns-home">
-      {/* Hero */}
+      {/* Hero — judul full-width satu baris sebagai elemen dominan, ilustrasi mendampingi teks */}
       <section className="ns-hero">
-        <div className="ns-hero-text">
-          <div className="ns-hero-badge">
-            <BadgeCheck /> Kesehatan Dimulai dari Apa yang Anda Minum
-          </div>
-          <h1>
-            <span className="ns-hero-title-line">Kenali Nutrisi</span>
-            <br />
-            <span className="t-green">Minuman</span>
-          </h1>
-          <p>
-            Foto label Informasi Nilai Gizi pada kemasan minuman untuk mendapatkan hasil analisis
-            nutrisi dan skor Nutri-Level secara otomatis.
-          </p>
-          <div className="ns-hero-btns">
-            <button className="ns-btn dark" onClick={scrollHow}>
-              Lihat Cara Kerja
-            </button>
-            <button className="ns-btn outline ns-btn-info" onClick={() => setDialog(true)}>
-              <InfoIcon /> <span className="ns-btn-text">Tentang Nutri-Level</span>
-            </button>
-          </div>
+        <div className="ns-hero-badge">
+          <BadgeCheck /> Kesehatan Dimulai dari Apa yang Anda Minum
         </div>
+
+        <h1 className="ns-hero-title">
+          Kenali Nutrisi
+          <span className="t-green ns-hero-title-line">Minuman</span>
+        </h1>
+
+        <p className="ns-hero-desc">
+          Foto label Informasi Nilai Gizi pada kemasan minuman untuk mendapatkan hasil analisis
+          nutrisi dan skor Nutri-Level secara otomatis.
+        </p>
 
         <div className="ns-hero-art">
           <img src={hero} alt="Ilustrasi skor Nutri-Level untuk minuman" />
+        </div>
+
+        {/* Tombol pada baris sendiri (full-width) — ukuran & panjangnya bebas, tak bentrok
+            dengan ilustrasi, dan tetap sejajar ke samping di desktop maupun mobile. */}
+        <div className="ns-hero-actions">
+          <button className="ns-btn dark ns-cta" onClick={scrollHow}>
+            Lihat Cara Kerja
+          </button>
+          <button className="ns-btn outline ns-cta ns-btn-info" onClick={() => setDialog(true)}>
+            <InfoIcon /> <span className="ns-btn-text">Tentang Nutri-Level</span>
+          </button>
         </div>
       </section>
 
@@ -167,13 +176,31 @@ export default function HomeScreen({ onPhoto }) {
         </div>
       </section>
 
+      {/* Tips foto — section dengan latar berbeda agar menonjol dari background halaman */}
+      <section className="ns-tips">
+        <div className="ns-tips-head">
+          <h2 className="ns-tips-title">Tips Foto Terbaik</h2>
+        </div>
+        <div className="ns-tips-grid">
+          {PHOTO_TIPS.map((t) => (
+            <div className="ns-tip" key={t.title}>
+              <span className="ns-tip-check"><CheckIcon /></span>
+              <div className="ns-tip-text">
+                <h4>{t.title}</h4>
+                <p>{t.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="ns-footer">
         <div className="ns-footer-brand">
           <span className="ns-bn-blue">Nus</span><span className="ns-bn-green">ca</span>
         </div>
         <div className="ns-footer-note">
-          © 2025 Nusca AI. Platform analisis nutrisi minuman kemasanberbasis AI.
+          © 2025 Nusca AI. Platform analisis nutrisi minuman kemasan berbasis AI.
         </div>
       </footer>
 
@@ -210,6 +237,13 @@ function BadgeCheck() {
     <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 2 4 5v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V5l-8-3Z" />
       <path d="m9 12 2 2 4-4" />
+    </svg>
+  )
+}
+function CheckIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 6 9 17l-5-5" />
     </svg>
   )
 }

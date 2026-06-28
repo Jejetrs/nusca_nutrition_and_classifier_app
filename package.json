@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "NutriScan AI — pembaca label gizi & klasifikasi Nutri-Level (React)",
+  "description": "Nusca",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
