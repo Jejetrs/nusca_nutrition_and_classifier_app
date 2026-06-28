@@ -887,7 +887,7 @@
     gap: 2px;
   }
   .ns-cta.ns-btn-info svg { display: inline-block; width: 16px; height: 16px; }
-  .ns-hero-art img { width: clamp(132px, 25vw, 116px) }
+  .ns-hero-art img { max-width: 140px; }
   .ns-how-grid { grid-template-columns: 1fr; gap: 8px; }
   .ns-how-card { grid-template-columns: auto 1fr; padding: 18px 16px; }
   .ns-how-card h4 { font-size: 17px; }
