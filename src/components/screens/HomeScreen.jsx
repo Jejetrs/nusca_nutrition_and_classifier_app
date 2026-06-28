@@ -91,7 +91,7 @@ export default function HomeScreen({ onPhoto }) {
             Lihat Cara Kerja
           </button>
           <button className="ns-btn outline ns-cta ns-btn-info" onClick={() => setDialog(true)}>
-            <InfoIcon /> <span className="ns-btn-text">Tentang Nutri-Level</span>
+            <InfoIcon />
           </button>
         </div>
       </section>
