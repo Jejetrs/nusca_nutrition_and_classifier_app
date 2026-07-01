@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { analyzeImage } from '../../api/client.js'
+import { Spinner } from '@/components/ui/spinner'
 
 const STAGES = [
   'Memindai label kemasan',
@@ -109,7 +110,7 @@ export default function ProcessingScreen({ blob, previewUrl, onDone, onError }) 
       </div>
 
       <div className="ns-loader-pill">
-        <span className="ns-model-spinner" aria-hidden="true" /> Sedang Memproses Label…
+        <Spinner className="text-white size-4" aria-hidden="true" /> Sedang Memproses Label…
       </div>
     </div>
   )

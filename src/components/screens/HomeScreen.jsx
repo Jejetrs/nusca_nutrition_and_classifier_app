@@ -99,9 +99,9 @@ export default function HomeScreen({ onPhoto }) {
           <Button
             variant="nutri"
             onClick={() => setDialog(true)}
-            className="ns-hero-btn h-auto whitespace-nowrap py-2.5 text-center leading-tight max-sm:flex-1 max-sm:min-w-0 max-sm:text-[12px]"
+            className="ns-hero-btn ns-hero-info-btn h-auto whitespace-nowrap py-2.5 text-center leading-tight max-sm:flex-1 max-sm:min-w-0 max-sm:text-[12px]"
           >
-            <InfoIcon /> Tentang Nutri-Level
+            <InfoIcon /> <span className="ns-hero-btn-label">Tentang Nutri-Level</span>
           </Button>
         </div>
       </section>

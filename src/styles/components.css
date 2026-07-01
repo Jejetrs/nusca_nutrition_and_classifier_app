@@ -8,8 +8,6 @@
 /* ══════════════════════════ HOME ══════════════════════════════ */
 .ns-home { padding-bottom: 16px; }
 
-/* Judul melebar penuh di baris atas; ilustrasi mendampingi paragraf di bawahnya.
-   container-type: inline-size mengaktifkan unit cqi yang dipakai judul. */
 .ns-hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr) clamp(220px, 34vw, 380px);
@@ -101,6 +99,13 @@
   .ns-hero-actions .ns-hero-btn {
     padding: 9px 12px;
     font-size: 13px;
+  }
+  .ns-hero-info-btn .ns-hero-btn-label {
+    display: none;
+  }
+  .ns-hero-info-btn {
+    padding-left: 12px;
+    padding-right: 12px;
   }
 }
 
