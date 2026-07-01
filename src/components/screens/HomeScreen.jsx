@@ -92,14 +92,14 @@ export default function HomeScreen({ onPhoto }) {
           <Button
             variant="dark"
             onClick={scrollHow}
-            className="h-auto whitespace-normal py-2.5 text-center leading-tight max-sm:flex-1 max-sm:min-w-0 max-sm:text-[12px]"
+            className="ns-hero-btn h-auto whitespace-nowrap py-2.5 text-center leading-tight max-sm:flex-1 max-sm:min-w-0 max-sm:text-[12px]"
           >
             Lihat Cara Kerja
           </Button>
           <Button
             variant="nutri"
             onClick={() => setDialog(true)}
-            className="h-auto whitespace-normal py-2.5 text-center leading-tight max-sm:flex-1 max-sm:min-w-0 max-sm:text-[12px]"
+            className="ns-hero-btn h-auto whitespace-nowrap py-2.5 text-center leading-tight max-sm:flex-1 max-sm:min-w-0 max-sm:text-[12px]"
           >
             <InfoIcon /> Tentang Nutri-Level
           </Button>

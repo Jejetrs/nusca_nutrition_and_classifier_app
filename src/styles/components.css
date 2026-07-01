@@ -78,6 +78,31 @@
   gap: clamp(8px, 1.3vw, 14px);
   margin-top: 0;
 }
+.ns-hero-actions .ns-hero-btn {
+  min-width: 0;
+  padding: 12px 16px;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+}
+.ns-hero-actions .ns-hero-btn svg {
+  width: 16px;
+  height: 16px;
+}
+@media screen and (max-width: 980px) {
+  .ns-hero-actions .ns-hero-btn {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 760px) {
+  .ns-hero-actions {
+    gap: 10px;
+  }
+  .ns-hero-actions .ns-hero-btn {
+    padding: 9px 12px;
+    font-size: 13px;
+  }
+}
 
 /* Animasi masuk ringan pada hero */
 .ns-hero-badge, .ns-hero-title, .ns-hero-desc, .ns-hero-actions { animation: ns-slide-up .5s ease both; }
@@ -452,9 +477,23 @@
 .ns-step-status.wait   { color: var(--muted); }
 
 .ns-loader-pill {
-  display: inline-flex; align-items: center; gap: 20px;
+  display: inline-flex; align-items: center; gap: 18px;
   background: var(--ink-btn); color: #fff; font-weight: 700; font-size: 16px;
-  padding: 16px 30px; border-radius: 14px;
+  padding: 16px 24px; border-radius: 14px;
+}
+
+.ns-model-spinner {
+  width: 22px;
+  height: 22px;
+  border: 3px solid rgba(255, 255, 255, 0.24);
+  border-top-color: #fff;
+  border-radius: 999px;
+  animation: ns-spin 0.9s linear infinite;
+  box-sizing: border-box;
+}
+
+@keyframes ns-spin {
+  to { transform: rotate(360deg); }
 }
 
 .ns-proc-error { background: #fff; border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--sh); padding: 40px; max-width: 480px; margin: 40px auto; }
