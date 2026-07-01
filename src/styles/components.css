@@ -401,20 +401,15 @@
 .ns-scan-guide.g1 { width: 300px; height: 300px; }
 .ns-scan-guide.g2 { width: 244px; height: 244px; border-color: rgba(34, 197, 94, .16); }
 
-/* Ripple ganda: lingkaran membesar dari kecil → besar lalu memudar */
+/* Ripple ganda: lingkaran hijau statis */
 .ns-ripple {
   position: absolute; top: 50%; left: 50%; z-index: 1;
   width: 300px; height: 300px; margin: -150px 0 0 -150px;
   border-radius: 50%; border: 2px solid #22c55e;
-  transform: scale(.5); opacity: 0;
-  animation: ns-ripple 2.6s ease-out infinite;
+  transform: scale(1); opacity: .16;
+  animation: none;
 }
-.ns-ripple.rb { border-color: #4ade80; animation-delay: 1.3s; }
-@keyframes ns-ripple {
-  0%   { transform: scale(.5); opacity: .55; }
-  70%  { opacity: .12; }
-  100% { transform: scale(1); opacity: 0; }
-}
+.ns-ripple.rb { border-color: #4ade80; animation: none; }
 
 /* Buah & minuman mengorbit; tiap item dilawan-putar agar tetap tegak */
 .ns-orbit { position: absolute; inset: 0; z-index: 3; animation: ns-orbit-spin 20s linear infinite; }
@@ -483,6 +478,7 @@
 }
 
 .ns-model-spinner {
+  display: inline-block;
   width: 22px;
   height: 22px;
   border: 3px solid rgba(255, 255, 255, 0.24);
