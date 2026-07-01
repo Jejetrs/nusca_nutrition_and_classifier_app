@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import ReactCrop from 'react-image-crop'
 import 'react-image-crop/dist/ReactCrop.css'
+import { Spinner } from '@/components/ui/spinner'
 
 // ── Utilitas gambar ───────────────────────────────────────────────────────────
 
@@ -183,7 +184,13 @@ export default function CropScreen({ image, onConfirm, onBack }) {
               </ReactCrop>
             </div>
           )}
-          {rotating && <div className="ns-crop-spinner">Memutar…</div>}
+          {rotating && (
+            <div className="ns-crop-spinner">
+              <span className="inline-flex items-center gap-2">
+                <Spinner className="size-5" /> Memutar…
+              </span>
+            </div>
+          )}
 
           <div className="ns-zoom-controls">
             <button className="ns-zoom-btn" onClick={zoomOut} disabled={zoom <= ZOOM_MIN} title="Perkecil">

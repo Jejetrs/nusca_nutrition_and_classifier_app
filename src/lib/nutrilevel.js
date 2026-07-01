@@ -129,20 +129,6 @@ export function scaleBounds(fkey) {
   return { A: `≤${fx(a)}`, B: `≤${fx(b)}`, C: `≤${fx(c)}`, D: `>${fx(c)}` }
 }
 
-// Definisi 3 komponen GGL (urutan tampil)
-export const COMPONENTS = [
-  { fkey: 'gula', name: 'Gula', unit: 'g', pctKey: 'gula', kemKey: 'gula_g' },
-  { fkey: 'lemak_jenuh', name: 'Lemak Jenuh', unit: 'g', pctKey: 'lemak', kemKey: null },
-  { fkey: 'garam', name: 'Garam (Natrium)', unit: 'mg', pctKey: 'natrium', kemKey: 'natrium_mg' },
-]
-
-export function pctColor(p) {
-  if (p === null || p === undefined) return NA_COLOR
-  if (p <= 25) return '#16A34A'
-  if (p <= 50) return '#F59E0B'
-  return '#EF4444'
-}
-
 // ── Peringatan (komponen level C/D) ──────────────────────────────────────────
 export function buildAlerts(calc, fields) {
   const lbl = PENENTU_LBL

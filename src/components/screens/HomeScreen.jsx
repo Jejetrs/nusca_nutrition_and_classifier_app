@@ -1,15 +1,17 @@
 import { useRef, useState } from 'react'
 import hero from '../../assets/hero.png'
+import contohLabel from '../../assets/contoh_labelInformasi.jpg'
 import CameraModal from './CameraModal.jsx'
 import NutriLevelDialog from '../result/NutriLevelDialog.jsx'
+import { Button } from '@/components/ui/button'
 
 const ACCEPT = ['image/jpeg', 'image/png', 'image/webp', 'image/bmp']
 const MAX_MB = 5
 
 const PHOTO_TIPS = [
   { title: 'Cahaya Merata', desc: 'Hindari pantulan dan bayangan agar teks label terlihat jelas oleh kamera.' },
-  { title: 'Posisi Lurus', desc: 'Pegang kemasan tegak lurus di depan kamera — jangan miring atau bersudut.' },
   { title: 'Label Utuh', desc: 'Pastikan tabel Informasi Nilai Gizi tidak terlipat, basah, atau tertutup.' },
+  { title: 'Posisi Lurus', desc: 'Pegang kemasan tegak lurus di depan kamera — jangan miring atau bersudut.' },
   { title: 'Tangan Stabil', desc: 'Tahan kamera sebentar agar hasil foto tajam dan tidak buram.' },
 ]
 
@@ -84,15 +86,23 @@ export default function HomeScreen({ onPhoto }) {
           <img src={hero} alt="Ilustrasi skor Nutri-Level untuk minuman" />
         </div>
 
-        {/* Tombol pada baris sendiri (full-width) — ukuran & panjangnya bebas, tak bentrok
-            dengan ilustrasi, dan tetap sejajar ke samping di desktop maupun mobile. */}
+        {/* Tombol pada baris sendiri — whitespace-normal + min-w-0 agar teks membungkus
+            di dalam tombol (tidak meluap) saat layar menyempit. */}
         <div className="ns-hero-actions">
-          <button className="ns-btn dark ns-cta" onClick={scrollHow}>
+          <Button
+            variant="dark"
+            onClick={scrollHow}
+            className="h-auto whitespace-normal py-2.5 text-center leading-tight max-sm:flex-1 max-sm:min-w-0 max-sm:text-[12px]"
+          >
             Lihat Cara Kerja
-          </button>
-          <button className="ns-btn outline ns-cta ns-btn-info" onClick={() => setDialog(true)}>
-            <InfoIcon /> <span className="ns-btn-text">Tentang Nutri-Level</span>
-          </button>
+          </Button>
+          <Button
+            variant="nutri"
+            onClick={() => setDialog(true)}
+            className="h-auto whitespace-normal py-2.5 text-center leading-tight max-sm:flex-1 max-sm:min-w-0 max-sm:text-[12px]"
+          >
+            <InfoIcon /> Tentang Nutri-Level
+          </Button>
         </div>
       </section>
 
@@ -176,21 +186,24 @@ export default function HomeScreen({ onPhoto }) {
         </div>
       </section>
 
-      {/* Tips foto — section dengan latar berbeda agar menonjol dari background halaman */}
-      <section className="ns-tips">
-        <div className="ns-tips-head">
-          <h2 className="ns-tips-title">Tips Foto Terbaik</h2>
-        </div>
-        <div className="ns-tips-grid">
-          {PHOTO_TIPS.map((t) => (
-            <div className="ns-tip" key={t.title}>
-              <span className="ns-tip-check"><CheckIcon /></span>
-              <div className="ns-tip-text">
-                <h4>{t.title}</h4>
-                <p>{t.desc}</p>
+      {/* Tips foto terbaik — daftar tips di kiri, contoh foto label di kanan */}
+      <section className="ns-ptips">
+        <div>
+          <h2 className="ns-ptips-title">Tips Foto Terbaik</h2>
+          <div className="ns-ptips-list">
+            {PHOTO_TIPS.map((t) => (
+              <div className="ns-ptips-item" key={t.title}>
+                <span className="ns-ptips-check"><CheckIcon /></span>
+                <div className="ns-ptips-text">
+                  <h4>{t.title}</h4>
+                  <p>{t.desc}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+        </div>
+        <div className="ns-ptips-photo">
+          <LabelExample />
         </div>
       </section>
 
@@ -228,6 +241,16 @@ function HowCard({ n, icon, title, children, accent }) {
       </div>
       <span className="ns-how-card-num" aria-hidden="true">{n}</span>
     </div>
+  )
+}
+
+function LabelExample() {
+  return (
+    <img
+      src={contohLabel}
+      alt="Contoh foto label Informasi Nilai Gizi"
+      style={{ width: '80%', height: '100%', objectFit: 'cover', borderRadius: '18px' }}
+    />
   )
 }
 

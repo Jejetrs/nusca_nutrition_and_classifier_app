@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { analyzeImage } from '../../api/client.js'
+import { Spinner } from '@/components/ui/spinner'
 
 const STAGES = [
   'Memindai label kemasan',
@@ -55,25 +56,32 @@ export default function ProcessingScreen({ blob, previewUrl, onDone, onError }) 
   return (
     <div className="ns-processing">
       <div className="ns-scan-stage">
-        {FRUITS.map((f, i) => (
-          <span key={i} className={`ns-fruit f${i + 1}`} aria-hidden="true">{f}</span>
-        ))}
-        <div className="ns-scan-wrap">
-          <svg className="ns-scan-ring ns-scan-ring-outer" viewBox="0 0 120 120" aria-hidden="true">
-            <circle className="ns-ring-track" cx="60" cy="60" r="57" />
-            <circle className="ns-ring-prog" cx="60" cy="60" r="57" />
-          </svg>
-          <svg className="ns-scan-ring ns-scan-ring-inner" viewBox="0 0 120 120" aria-hidden="true">
-            <circle className="ns-ring-track-inner" cx="60" cy="60" r="51" />
-            <circle className="ns-ring-prog-inner" cx="60" cy="60" r="51" />
-          </svg>
-          <div className="ns-scan-chip">
-            <CpuIcon />
-          </div>
-          <div className="ns-scan-img">
-            {previewUrl ? <img src={previewUrl} alt="Label sedang dianalisis" /> : null}
-            <div className="ns-scan-line" />
-          </div>
+        <div className="ns-scan-chip"><CpuIcon /></div>
+
+        {/* Cincin panduan samar + ripple ganda yang membesar dari kecil ke besar */}
+        <span className="ns-scan-guide g1" aria-hidden="true" />
+        <span className="ns-scan-guide g2" aria-hidden="true" />
+        <span className="ns-ripple" aria-hidden="true" />
+        <span className="ns-ripple rb" aria-hidden="true" />
+
+        {/* Buah & minuman mengorbit melingkar */}
+        <div className="ns-orbit" aria-hidden="true">
+          {FRUITS.map((f, i) => {
+            const a = (i / FRUITS.length) * 2 * Math.PI - Math.PI / 2
+            const x = 50 + 41 * Math.cos(a)
+            const y = 50 + 41 * Math.sin(a)
+            return (
+              <span className="ns-orbit-slot" key={i} style={{ left: `${x}%`, top: `${y}%` }}>
+                <span className="ns-orbit-item">{f}</span>
+              </span>
+            )
+          })}
+        </div>
+
+        {/* Lensa tengah: pratinjau label + garis pindai */}
+        <div className="ns-lens">
+          {previewUrl ? <img src={previewUrl} alt="Label sedang dianalisis" /> : null}
+          <div className="ns-lens-line" />
         </div>
       </div>
 
@@ -102,7 +110,7 @@ export default function ProcessingScreen({ blob, previewUrl, onDone, onError }) 
       </div>
 
       <div className="ns-loader-pill">
-        <span className="ns-spin-sm" /> Sedang Memproses Label…
+        <Spinner className="size-[18px] text-green-400" /> Sedang Memproses Label…
       </div>
     </div>
   )

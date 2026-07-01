@@ -5,6 +5,7 @@ import LabelBreakdown from '../result/LabelBreakdown.jsx'
 import IntakeChart from '../result/IntakeChart.jsx'
 import ConsumptionTips from '../result/ConsumptionTips.jsx'
 import NutriLevelDialog from '../result/NutriLevelDialog.jsx'
+import { Button } from '@/components/ui/button'
 
 export default function ResultScreen({ result, onRestart }) {
   const { mode, fields, calc, panel_image: panelImage } = result
@@ -23,9 +24,9 @@ export default function ResultScreen({ result, onRestart }) {
           <button className="ns-icon-btn square" onClick={() => window.print()} title="Cetak / simpan PDF" aria-label="Cetak">
             <PrintIcon />
           </button>
-          <button className="ns-btn light sm" onClick={() => setDialog(true)}>
+          <Button variant="nutri" size="sm" className="min-w-0 whitespace-normal" onClick={() => setDialog(true)}>
             <InfoIcon /> Tentang Nutri-Level
-          </button>
+          </Button>
         </div>
       </div>
 

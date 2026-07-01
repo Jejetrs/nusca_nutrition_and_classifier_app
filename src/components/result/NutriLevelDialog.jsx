@@ -1,4 +1,5 @@
 import { NL_OFFICIAL, NL_DESC } from '../../lib/nutrilevel.js'
+import { Separator } from '@/components/ui/separator'
 
 const GRADES = ['A', 'B', 'C', 'D']
 
@@ -14,6 +15,8 @@ export default function NutriLevelDialog({ active, onClose }) {
             </svg>
           </button>
         </div>
+
+        <Separator className="mb-5" />
 
         <div className="ns-dialog-body">
           <p className="ns-nlinfo-lead">
