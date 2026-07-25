@@ -28,6 +28,7 @@ export default function NutriLevelDialog({ active, onClose }) {
               className="ns-ext-link"
               title="Buka keputusan di JDIH"
               aria-label="Buka Kepmenkes di JDIH"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
             >
               <b>Kepmenkes No. HK.01.07/MENKES/301/2026</b>
               <svg
@@ -40,7 +41,7 @@ export default function NutriLevelDialog({ active, onClose }) {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                style={{ marginLeft: 6, verticalAlign: 'text-bottom' }}
+                style={{ display: 'block' }}
                 aria-hidden="true"
               >
                 <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
