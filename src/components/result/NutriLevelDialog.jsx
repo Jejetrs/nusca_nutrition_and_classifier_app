@@ -21,7 +21,33 @@ export default function NutriLevelDialog({ active, onClose }) {
         <div className="ns-dialog-body">
           <p className="ns-nlinfo-lead">
             <b>Nutri-Level</b> adalah label peringkat gizi (A–D) untuk minuman/pangan olahan sesuai{' '}
-            <a href="https://jdih.kemkes.go.id/documents/keputusan-menteri-kesehatan-nomor-hk0107menkes3012026" target="_blank" rel="noopener noreferrer"><b>Kepmenkes No. HK.01.07/MENKES/301/2026</b></a>. Level dihitung dari kandungan{' '}
+            <a
+              href="https://jdih.kemkes.go.id/documents/keputusan-menteri-kesehatan-nomor-hk0107menkes3012026"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ns-ext-link"
+              title="Buka keputusan di JDIH"
+              aria-label="Buka Kepmenkes di JDIH"
+            >
+              <b>Kepmenkes No. HK.01.07/MENKES/301/2026</b>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="14"
+                height="14"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{ marginLeft: 6, verticalAlign: 'text-bottom' }}
+                aria-hidden="true"
+              >
+                <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <path d="M15 3h6v6" />
+                <path d="M10 14L21 3" />
+              </svg>
+            </a>. Level dihitung dari kandungan{' '}
             <b>Gula, Garam (natrium), dan Lemak Jenuh (GGL)</b> per 100 ml; level akhir mengikuti komponen yang{' '}
             <b>paling tinggi (terburuk)</b>.
           </p>
