@@ -90,7 +90,7 @@ export default function LabelBreakdown({ calc, fields, panelImage, mode }) {
 
         <div className="ns-analyzed-card">
           <div className="ns-analyzed-head">
-            <span>ANALYZED LABEL</span>
+            <span>LABEL HASIL ANALISIS</span>
             {panelImage && (
               <button className="ns-analyzed-full" onClick={() => setZoom(true)}>
                 <EyeIcon /> Lihat Penuh
