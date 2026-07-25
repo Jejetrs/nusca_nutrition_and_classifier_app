@@ -17,8 +17,11 @@ function loadImage(src) {
 
 // Salin area crop (piksel TAMPILAN) ke canvas resolusi asli
 function cropToCanvas(image, crop, maxSide = null) {
-  const scaleX = image.naturalWidth / image.width
-  const scaleY = image.naturalHeight / image.height
+  const rect = image.getBoundingClientRect()
+  const displayWidth = rect.width || image.width
+  const displayHeight = rect.height || image.height
+  const scaleX = image.naturalWidth / displayWidth
+  const scaleY = image.naturalHeight / displayHeight
   let outW = Math.max(1, Math.round(crop.width * scaleX))
   let outH = Math.max(1, Math.round(crop.height * scaleY))
   if (maxSide && Math.max(outW, outH) > maxSide) {

@@ -786,7 +786,7 @@
 }
 .ns-tips-deco { position: absolute; right: -70px; top: -70px; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,.10), transparent 70%); pointer-events: none; }
 .ns-tips-inner { position: relative; display: grid; grid-template-columns: 260px 1fr; gap: 28px; align-items: start; }
-.ns-tips-head { text-align: center; }
+.ns-tips-head { text-align: left; }
 .ns-tips-head h3 { font-size: 26px; font-weight: 800; letter-spacing: -.3px; }
 .ns-tips-head p { margin-top: 8px; color: #c7d0f5; font-size: 14px; line-height: 1.5; }
 .ns-tips-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
