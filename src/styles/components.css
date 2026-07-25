@@ -661,12 +661,11 @@
 .ns-analyzed-full { display: inline-flex; align-items: center; gap: 6px; background: none; border: none; cursor: pointer; color: var(--green-d); font-weight: 700; font-size: 13px; }
 .ns-analyzed-content { padding: 0 16px 16px; position: relative; }
 .ns-analyzed-img { width: 100%; border-radius: 12px; cursor: zoom-in; max-height: 360px; object-fit: cover; }
-.ns-detect-badges { position: absolute; inset: auto 16px 16px 16px; display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-end; }
+.ns-detect-badges { position: absolute; left: 28px; bottom: 28px; display: flex; gap: 8px; flex-wrap: wrap; }
 .ns-detect-badge {
   background: rgba(255,255,255,.92); backdrop-filter: blur(4px);
-  color: var(--ink-2); font-size: 10px; font-weight: 700; letter-spacing: .04em;
-  padding: 5px 8px; border-radius: 8px; box-shadow: var(--sh-sm);
-  max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  color: var(--ink-2); font-size: 10.5px; font-weight: 700; letter-spacing: .04em;
+  padding: 6px 10px; border-radius: 8px; box-shadow: var(--sh-sm);
 }
 .ns-analyzed-empty { padding: 40px; text-align: center; color: var(--muted); font-size: 13px; }
 
