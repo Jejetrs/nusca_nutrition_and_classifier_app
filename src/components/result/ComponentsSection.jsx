@@ -1,4 +1,5 @@
 import {
+  NL_BATAS,
   NL_OFFICIAL,
   NA_COLOR,
   componentInsight,
@@ -46,11 +47,7 @@ function ComponentCard({ comp, calc, fields }) {
   const kemVal = kemKey && calc.per_kemasan ? calc.per_kemasan[kemKey] : null
   const kemTxt = kemVal != null ? `${asIs(kemVal)} ${unit}` : null
 
-  const normalLimit = {
-    gula: '4 sendok makan (50 g) per hari',
-    garam: '1 sendok teh (5 g) per hari',
-    lemak_jenuh: '5 sendok makan (67 g) per hari',
-  }
+  const thresholdText = getThresholdText(fkey, unit)
 
   // Catatan komposisi gula: sukrosa & laktosa (laktosa dikurangi saat hitung level)
   const chips = []
@@ -81,8 +78,8 @@ function ComponentCard({ comp, calc, fields }) {
       </div>
 
       <div className="ns-ggl-limit">
-        <span>Ambang batas konsumsi normal</span>
-        <strong>{normalLimit[fkey]}</strong>
+        <span>Ambang batas normal konsumsi</span>
+        <strong>{thresholdText}</strong>
       </div>
 
       {chips.length > 0 && (
@@ -118,6 +115,15 @@ function ComponentCard({ comp, calc, fields }) {
       )}
     </div>
   )
+}
+
+function getThresholdText(fkey, unit) {
+  const bounds = NL_BATAS[fkey]
+  if (!bounds) return 'Tidak tersedia'
+  const [a, b, c] = bounds
+  const fmt = (value) => String(value).replace('.', ',')
+  const unitLabel = unit === 'mg' ? 'mg' : 'g'
+  return `A ≤ ${fmt(a)} ${unitLabel} · B ${fmt(a)}–${fmt(b)} ${unitLabel} · C ${fmt(b)}–${fmt(c)} ${unitLabel}`
 }
 
 function cap(s) {
