@@ -101,8 +101,8 @@ function ComponentCard({ comp, calc, fields }) {
 
       {insight ? (
         <div className={`ns-ggl-insight ins-${lv.toLowerCase()}`}>
-          <div className="ns-ggl-insight-rule">Level {lv}: {bandText(fkey, lv, unit)}</div>
           <div className="ns-ggl-insight-threshold">Konsumsi normal: {thresholdText}</div>
+          <div className="ns-ggl-insight-rule">Level {lv}: {bandText(fkey, lv, unit)}</div>
           <div className="ns-ggl-insight-text">{cap(insight)}</div>
         </div>
       ) : (
