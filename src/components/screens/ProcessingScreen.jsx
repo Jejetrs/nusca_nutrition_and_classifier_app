@@ -55,21 +55,37 @@ export default function ProcessingScreen({ blob, previewUrl, onDone, onError }) 
 
   return (
     <div className="ns-processing">
-      {/* Animasi Loading Deteksi */}
-      <div className="ns-detect-container">
-        {/* Box border yang berputar */}
-        <div className="ns-detect-border" />
-        
-        {/* Gambar crop di tengah */}
-        <div className="ns-detect-image">
+      {/* Animasi Loading Deteksi - Orbital dengan Fruits */}
+      <div className="ns-scan-stage">
+        {/* Lingkaran guide di luar */}
+        <span className="ns-scan-guide g1" aria-hidden="true" />
+        <span className="ns-scan-guide g2" aria-hidden="true" />
+
+        {/* Buah-buahan mengorbit */}
+        <div className="ns-orbit" aria-hidden="true">
+          {FRUITS.map((f, i) => {
+            const a = (i / FRUITS.length) * 2 * Math.PI - Math.PI / 2
+            const x = 50 + 41 * Math.cos(a)
+            const y = 50 + 41 * Math.sin(a)
+            return (
+              <span className="ns-orbit-slot" key={i} style={{ left: `${x}%`, top: `${y}%` }}>
+                <span className="ns-orbit-item">{f}</span>
+              </span>
+            )
+          })}
+        </div>
+
+        {/* Icon scan di pojok kanan atas */}
+        <div className="ns-scan-chip"><ScanIconGreen /></div>
+
+        {/* Gambar di tengah dengan circle border hijau */}
+        <div className="ns-lens">
           {previewUrl ? <img src={previewUrl} alt="Label sedang dianalisis" /> : null}
         </div>
 
-        {/* Icons di pojok */}
-        <div className="ns-detect-icon ns-detect-icon-tl"><ScanIconGreen /></div>
-        <div className="ns-detect-icon ns-detect-icon-tr"><ScanIconGreen /></div>
+        {/* Icons floating di pojok lain */}
         <div className="ns-detect-icon ns-detect-icon-bl"><ScanIconRed /></div>
-        <div className="ns-detect-icon ns-detect-icon-br"><ScanIconRed /></div>
+        <div className="ns-detect-icon ns-detect-icon-tr" style={{top: '10px', right: '10px'}}><DrinkIcon /></div>
       </div>
 
       <h2 className="ns-proc-title">Sedang menganalisis label minuman…</h2>
@@ -98,6 +114,9 @@ export default function ProcessingScreen({ blob, previewUrl, onDone, onError }) 
 
       <div className="ns-loader-pill">
         <Spinner className="text-white size-4" aria-hidden="true" /> Sedang Memproses Label…
+      </div>
+    </div>
+  )
       </div>
     </div>
   )
@@ -164,6 +183,15 @@ function ScanIconRed() {
   return (
     <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#a02c2c" strokeWidth="2.5" strokeLinecap="round">
       <path d="M13 2l3.5 7h7.5l-6 4.5 2.5 7.5L13 16.5 6.5 21l2.5-7.5-6-4.5h7.5L13 2z" />
+    </svg>
+  )
+}
+
+function DrinkIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#16A34A" strokeWidth="2" strokeLinecap="round">
+      <path d="M6 4h12v10c0 2-1.5 3-6 3s-6-1-6-3V4z" />
+      <path d="M9 4h6M9 13h6" />
     </svg>
   )
 }
