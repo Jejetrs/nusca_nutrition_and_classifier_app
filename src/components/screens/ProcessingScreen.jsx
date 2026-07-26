@@ -60,6 +60,7 @@ export default function ProcessingScreen({ blob, previewUrl, onDone, onError }) 
 
         {/* Lingkaran scan hijau animasi */}
         <span className="ns-scan-ring" aria-hidden="true" />
+        <span className="ns-scan-ring alt" aria-hidden="true" />
 
         {/* Buah & minuman mengorbit melingkar */}
         <div className="ns-orbit" aria-hidden="true">

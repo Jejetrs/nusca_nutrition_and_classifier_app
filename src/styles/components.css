@@ -408,17 +408,19 @@
 /* Lingkaran scan hijau animasi */
 .ns-scan-ring {
   position: absolute; top: 50%; left: 50%; z-index: 1;
-  width: 300px; height: 300px; margin: -150px 0 0 -150px;
-  border-radius: 50%; border: 2px solid rgba(34, 197, 94, .22);
-  transform: scale(.72);
+  width: 220px; height: 220px;
+  border-radius: 50%; border: 2px solid rgba(34, 197, 94, .35);
+  transform: translate(-50%, -50%);
   opacity: 0;
-  animation: ns-scan-ring 3.6s ease-in-out infinite;
+  animation: ns-scan-ring 4.0s ease-in-out infinite;
+  box-shadow: 0 0 16px rgba(34, 197, 94, .16);
 }
 .ns-scan-ring.alt {
+  width: 260px; height: 260px;
+  border-color: rgba(34, 197, 94, .22);
   animation-delay: 1.25s;
 }
 
-/* Ripple ganda: lingkaran pulse scan dengan animasi muncul dan membesar */
 /* Buah & minuman mengorbit; tiap item dilawan-putar agar tetap tegak */
 .ns-orbit { position: absolute; inset: 0; z-index: 3; animation: ns-orbit-spin 20s linear infinite; }
 .ns-orbit-slot { position: absolute; width: 0; height: 0; }
@@ -445,19 +447,19 @@
 }
 .ns-lens img { width: 100%; height: 100%; object-fit: cover; }
 .ns-lens-line {
-  position: absolute; left: 6%; right: 6%; top: 6%; height: 5px;
+  position: absolute; left: 6%; right: 6%; top: 0;
+  height: 3px;
   background: linear-gradient(90deg, transparent, #34d399, transparent);
-  box-shadow: 0 0 18px rgba(52, 211, 153, .45);
+  box-shadow: 0 0 16px rgba(52, 211, 153, .35);
   opacity: 1;
-  animation: ns-scan-line 2.8s ease-in-out infinite;
+  animation: ns-scan-line 2.2s ease-in-out infinite;
 }
 
 @keyframes ns-scan-line {
-  0% { top: 6%; opacity: .85; }
-  25% { top: 24%; opacity: 1; }
-  50% { top: 70%; opacity: .97; }
-  75% { top: 42%; opacity: .96; }
-  100% { top: 6%; opacity: .85; }
+  0% { transform: translateY(0); opacity: .85; }
+  30% { transform: translateY(40%); opacity: 1; }
+  60% { transform: translateY(85%); opacity: .96; }
+  100% { transform: translateY(0); opacity: .85; }
 }
 
 @keyframes ns-scan-ring {
