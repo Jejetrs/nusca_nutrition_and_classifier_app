@@ -58,11 +58,8 @@ export default function ProcessingScreen({ blob, previewUrl, onDone, onError }) 
       <div className="ns-scan-stage">
         <div className="ns-scan-chip"><CpuIcon /></div>
 
-        {/* Lingkaran scan hijau & ripple ganda yang membesar dari kecil ke besar */}
+        {/* Lingkaran scan hijau animasi */}
         <span className="ns-scan-ring" aria-hidden="true" />
-        <span className="ns-scan-ring alt" aria-hidden="true" />
-        <span className="ns-ripple" aria-hidden="true" />
-        <span className="ns-ripple rb" aria-hidden="true" />
 
         {/* Buah & minuman mengorbit melingkar */}
         <div className="ns-orbit" aria-hidden="true">

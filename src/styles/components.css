@@ -419,21 +419,6 @@
 }
 
 /* Ripple ganda: lingkaran pulse scan dengan animasi muncul dan membesar */
-.ns-ripple {
-  position: absolute; top: 50%; left: 50%; z-index: 1;
-  width: 300px; height: 300px; margin: -150px 0 0 -150px;
-  border-radius: 50%; border: 2px solid rgba(34, 197, 94, .35);
-  transform: scale(.48);
-  opacity: 0;
-  animation: ns-ripple-pulse 3.4s ease-in-out infinite;
-  box-shadow: 0 0 22px rgba(34, 197, 94, .1);
-}
-.ns-ripple.rb {
-  border-color: rgba(34, 197, 94, .28);
-  animation: ns-ripple-pulse 3.4s ease-in-out infinite 1.2s;
-  box-shadow: 0 0 16px rgba(34, 197, 94, .08);
-}
-
 /* Buah & minuman mengorbit; tiap item dilawan-putar agar tetap tegak */
 .ns-orbit { position: absolute; inset: 0; z-index: 3; animation: ns-orbit-spin 20s linear infinite; }
 .ns-orbit-slot { position: absolute; width: 0; height: 0; }
@@ -460,18 +445,19 @@
 }
 .ns-lens img { width: 100%; height: 100%; object-fit: cover; }
 .ns-lens-line {
-  position: absolute; left: 0; right: 0; top: 50%; height: 3px;
+  position: absolute; left: 6%; right: 6%; top: 6%; height: 5px;
   background: linear-gradient(90deg, transparent, #34d399, transparent);
-  box-shadow: 0 0 12px #34d399;
-  transform: translateY(-50%);
-  animation: ns-scan-line 2.4s ease-in-out infinite;
+  box-shadow: 0 0 18px rgba(52, 211, 153, .45);
+  opacity: 1;
+  animation: ns-scan-line 2.8s ease-in-out infinite;
 }
 
 @keyframes ns-scan-line {
-  0%, 100% { transform: translateY(-50%) scaleX(1); opacity: 1; }
-  20% { transform: translateY(-32%) scaleX(1.02); opacity: .92; }
-  50% { transform: translateY(12%) scaleX(1.08); opacity: .98; }
-  80% { transform: translateY(-18%) scaleX(1.04); opacity: .94; }
+  0% { top: 6%; opacity: .85; }
+  25% { top: 24%; opacity: 1; }
+  50% { top: 70%; opacity: .97; }
+  75% { top: 42%; opacity: .96; }
+  100% { top: 6%; opacity: .85; }
 }
 
 @keyframes ns-scan-ring {
@@ -497,28 +483,6 @@
   }
 }
 
-@keyframes ns-ripple-pulse {
-  0% {
-    transform: scale(.32);
-    opacity: 0;
-    border-color: rgba(34, 197, 94, .2);
-  }
-  35% {
-    transform: scale(.74);
-    opacity: .22;
-    border-color: rgba(34, 197, 94, .3);
-  }
-  60% {
-    transform: scale(1.05);
-    opacity: .2;
-    border-color: rgba(34, 197, 94, .48);
-  }
-  100% {
-    transform: scale(1.26);
-    opacity: 0;
-    border-color: rgba(22, 163, 74, .55);
-  }
-}
 
 @media (prefers-reduced-motion: reduce) {
   .ns-ripple, .ns-orbit, .ns-orbit-item, .ns-lens-line { animation: none; }
@@ -1031,9 +995,6 @@
   .ns-result-footer .ns-btn { min-width: 0; width: 100%; }
   .ns-serving-value { font-size: 14px; }
   .ns-scan-stage { width: 264px; height: 264px; }
-  .ns-scan-guide.g1 { width: 264px; height: 264px; }
-  .ns-scan-guide.g2 { width: 214px; height: 214px; }
-  .ns-ripple { width: 264px; height: 264px; margin: -132px 0 0 -132px; }
   .ns-lens { width: 150px; height: 150px; }
   .ns-orbit-item { font-size: 22px; }
   .ns-loader-pill { font-size: 14.5px; padding: 14px 22px; }
