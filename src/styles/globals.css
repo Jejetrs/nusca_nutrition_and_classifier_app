@@ -144,6 +144,9 @@ a { color: inherit; }
   margin-bottom: 26px;
 }
 .ns-brand { display: flex; align-items: center; gap: 11px; }
+.ns-brand-button { background: transparent; border: none; padding: 0; text-align: left; cursor: pointer; display: flex; align-items: center; width: 100%; }
+.ns-brand-button:hover .ns-logo { border-color: rgba(29, 58, 115, .35); box-shadow: 0 8px 16px rgba(29, 58, 115, .08); }
+.ns-brand-button:hover .ns-brand-name { opacity: .92; }
 .ns-logo {
   width: 42px; height: 42px;
   border-radius: 12px;
@@ -157,7 +160,7 @@ a { color: inherit; }
 .ns-logo img { width: 30px; height: 30px; object-fit: contain; }
 
 /* Logo lockup bergaya produk */
-.ns-brand-text { display: flex; flex-direction: column; min-width: 0; }
+.ns-brand-text { display: flex; flex-direction: column; min-width: 0; text-align: left; }
 .ns-brand-name {
   font-weight: 800; font-size: 18px; letter-spacing: -.2px;
   color: var(--green-d); line-height: 1.1;

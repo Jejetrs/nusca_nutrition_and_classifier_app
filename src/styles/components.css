@@ -410,9 +410,9 @@
   position: absolute; top: 50%; left: 50%; z-index: 1;
   width: 200px; height: 200px;
   border-radius: 50%;
-  border: 2.5px solid rgba(148, 163, 184, .55);
+  border: 2.5px solid rgba(113, 128, 150, .72);
   transform: translate(-50%, -50%) scale(.50);
-  opacity: .15;
+  opacity: .22;
   animation: ns-pulse-ring-grow 5.8s cubic-bezier(.25, .1, .3, 1) infinite;
 }
 .ns-pulse-ring.ring-2 { animation-delay: 1.9s; }
@@ -422,28 +422,28 @@
   0% {
     transform: translate(-50%, -50%) scale(.6);
     opacity: 0;
-    border-color: rgba(148, 163, 184, 0);
-    box-shadow: 0 0 0 rgba(148, 163, 184, 0);
+    border-color: rgba(113, 128, 150, 0);
+    box-shadow: 0 0 0 rgba(113, 128, 150, 0);
   }
   20% {
-    opacity: .08;
+    opacity: .14;
   }
   60% {
-    opacity: .24;
-    border-color: rgba(148, 163, 184, .22);
-    box-shadow: 0 0 14px rgba(148, 163, 184, .08);
+    opacity: .34;
+    border-color: rgba(113, 128, 150, .42);
+    box-shadow: 0 0 14px rgba(113, 128, 150, .12);
   }
   85% {
     transform: translate(-50%, -50%) scale(1.25);
-    opacity: .28;
-    border-color: rgba(148, 163, 184, .18);
-    box-shadow: 0 0 16px rgba(148, 163, 184, .1);
+    opacity: .38;
+    border-color: rgba(113, 128, 150, .32);
+    box-shadow: 0 0 16px rgba(113, 128, 150, .14);
   }
   100% {
     transform: translate(-50%, -50%) scale(1.4);
     opacity: 0;
-    border-color: rgba(148, 163, 184, 0);
-    box-shadow: 0 0 0 rgba(148, 163, 184, 0);
+    border-color: rgba(113, 128, 150, 0);
+    box-shadow: 0 0 0 rgba(113, 128, 150, 0);
   }
 }
  
@@ -679,7 +679,7 @@
 .ns-ggl-insight.ins-c { background: #fffbeb; border-color: #fde68a; }
 .ns-ggl-insight.ins-d { background: #fef2f2; border-color: #fecaca; }
 .ns-ggl-insight-rule { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 10.5px; font-weight: 800; letter-spacing: .02em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 3px; }
-.ns-ggl-insight-threshold { font-size: 10px; font-weight: 700; color: var(--ink); background: rgba(15, 23, 42, .04); border-radius: 999px; padding: 2px 8px; }
+.ns-ggl-insight-threshold { font-size: 10px; font-weight: 700; color: var(--ink); background: rgba(15, 23, 42, .04); border-radius: 999px; padding: 2px 8px; margin-bottom: 10px; display: inline-block; }
 .ns-ggl-insight-text { font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
 .ns-ggl-note { display: flex; align-items: flex-start; gap: 7px; margin-top: 12px; font-size: 12.5px; line-height: 1.5; color: var(--ink-soft); }
 
