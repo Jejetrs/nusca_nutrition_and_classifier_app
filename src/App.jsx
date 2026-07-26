@@ -10,11 +10,11 @@ import { getHealth } from './api/client.js'
 export default function App() {
   const [step, setStep] = useState('beranda')
   const [original, setOriginal] = useState(null) // { url, name }
-  const [cropped, setCropped] = useState(null) // Blob
+  const [cropped, setCropped] = useState(null)
   const [result, setResult] = useState(null)
   const [status, setStatus] = useState({ mode: 'demo', message: '' })
 
-  // Sidebar: terbuka secara default di layar lebar, tertutup di layar kecil.
+  // Sidebar
   const [sidebarOpen, setSidebarOpen] = useState(
     typeof window !== 'undefined' ? window.innerWidth >= 1024 : true,
   )
@@ -23,8 +23,7 @@ export default function App() {
     getHealth().then((h) => setStatus({ mode: h.mode, message: h.message }))
   }, [])
 
-  // Selalu gulir ke atas setiap kali langkah berubah. Kontainer scroll bisa
-  // berbeda (window, body, root, atau .ns-main), jadi reset semuanya.
+  // Selalu gulir ke atas setiap kali langkah berubah
   useEffect(() => {
     const main = document.querySelector('.ns-main')
     if (main) main.scrollTop = 0
@@ -75,7 +74,7 @@ export default function App() {
         onClose={() => setSidebarOpen(false)}
       />
 
-      {/* Tirai gelap saat drawer terbuka di mobile */}
+      {/* Bg gelap saat drawer terbuka di mobile */}
       <div className="ns-backdrop" onClick={() => setSidebarOpen(false)} />
 
       {/* Tombol untuk membuka kembali sidebar saat sedang tertutup */}

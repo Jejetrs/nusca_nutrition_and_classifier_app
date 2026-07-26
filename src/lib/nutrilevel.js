@@ -15,7 +15,6 @@ export const LEVEL = {
 export const NA_COLOR = '#94A3B8'
 export const gradeColor = (g) => (LEVEL[g] ? LEVEL[g].bg : NA_COLOR)
 
-// Warna RESMI Kepmenkes (untuk strip A-B-C-D di dialog)
 export const NL_OFFICIAL = { A: '#1A7A3D', B: '#7AB829', C: '#F4A81D', D: '#C0241B' }
 
 // ── Ambang Nutri-Level per 100 ml (batas atas A,B,C) ─────────────────────────
@@ -107,7 +106,6 @@ const INSIGHT = {
 
 const fx = (x) => String(x).replace('.', ',')
 
-// Band tekstual untuk level tertentu pada satu komponen
 export function bandText(fkey, lv, unit) {
   const [a, b, c] = NL_BATAS[fkey]
   return {
@@ -123,7 +121,7 @@ export function componentInsight(fkey, lv) {
   return INSIGHT[fkey][lv]
 }
 
-// Batas tampil pada skala A-D mini
+// tampil pada skala A-D mini
 export function scaleBounds(fkey) {
   const [a, b, c] = NL_BATAS[fkey]
   return { A: `≤${fx(a)}`, B: `≤${fx(b)}`, C: `≤${fx(c)}`, D: `>${fx(c)}` }

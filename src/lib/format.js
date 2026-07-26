@@ -12,7 +12,7 @@ export function numericPart(raw) {
   return m ? m[0].replace(',', '.') : null
 }
 
-// Tampilkan nilai mentah field apa adanya, "—" bila kosong
+// Tampilkan nilai field apa adanya, "—" bila kosong
 export function showRaw(raw, suffix = '') {
   if (raw === null || raw === undefined || raw === '') return '—'
   return `${raw}${suffix}`

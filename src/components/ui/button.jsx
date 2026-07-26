@@ -11,7 +11,6 @@ const buttonVariants = cva(
         default: 'bg-primary text-primary-foreground shadow-xs hover:bg-primary/90',
         outline: 'border bg-background hover:bg-accent hover:text-accent-foreground',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
-        // Pil hijau lembut sesuai gambar referensi (Tentang Nutri-Level)
         nutri:
           'rounded-full border border-[#cfe7d7] bg-[var(--green-soft)] text-[var(--forest)] hover:bg-[#dcefe3] hover:border-[#b9ddc6]',
         dark: 'rounded-full bg-[var(--ink-btn)] text-white hover:bg-[#1f352c]',

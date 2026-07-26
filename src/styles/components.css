@@ -1,5 +1,4 @@
 /* ============================================================================
-   Nusca — components.css
    Home · Crop · Processing · Result · GradeCard · GGL · LabelBreakdown
    IntakeChart · ConsumptionTips · Dialog · Camera modal · responsive
    Semua media query pakai `screen` agar print = tampilan desktop.
@@ -780,19 +779,21 @@
 /* ══════════════════════════ CONSUMPTION TIPS ════════════════ */
 .ns-tips-card {
   position: relative; overflow: hidden;
-  background: linear-gradient(135deg, #1e8449 0%, #239155 100%);
-  border-radius: var(--r-lg); color: #fff; padding: 40px 32px;
-  margin-bottom: 20px; box-shadow: 0 8px 32px rgba(26, 122, 61, .22);
+  background: linear-gradient(135deg, var(--indigo), var(--indigo-2));
+  border-radius: var(--r-lg); color: #fff; padding: 30px 32px;
+  margin-bottom: 20px; box-shadow: var(--sh-md);
 }
-.ns-tips-head { text-align: left; margin-bottom: 48px; }
-.ns-tips-head h3 { font-size: 32px; font-weight: 800; letter-spacing: -.5px; color: #fff; margin: 0; }
-.ns-tips-head p { margin-top: 12px; color: rgba(255, 255, 255, 0.88); font-size: 15px; line-height: 1.6; max-width: 600px; margin-bottom: 0; }
-.ns-tips-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-.ns-tip-card { display: flex; flex-direction: column; align-items: center; text-align: center; }
-.ns-tip-icon { width: 64px; height: 64px; border-radius: 22px; background: rgba(255, 255, 255, 0.18); display: grid; place-items: center; color: #fff; flex-shrink: 0; margin-bottom: 20px; transition: all .3s ease; }
-.ns-tip-card:hover .ns-tip-icon { background: rgba(255, 255, 255, 0.28); transform: translateY(-4px); }
-.ns-tip-title { font-weight: 700; font-size: 17px; margin-bottom: 10px; color: #fff; margin-top: 0; }
-.ns-tip-body { font-size: 14px; line-height: 1.65; color: rgba(255, 255, 255, 0.87); margin: 0; }
+.ns-tips-deco { position: absolute; right: -70px; top: -70px; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,.10), transparent 70%); pointer-events: none; }
+.ns-tips-inner { position: relative; display: grid; grid-template-columns: 260px 1fr; gap: 28px; align-items: start; }
+.ns-tips-head { text-align: left; }
+.ns-tips-head h3 { font-size: 26px; font-weight: 800; letter-spacing: -.3px; }
+.ns-tips-head p { margin-top: 8px; color: #c7d0f5; font-size: 14px; line-height: 1.5; }
+.ns-tips-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.ns-tip-col { display: flex; gap: 12px; }
+.ns-tip-col-icon { width: 40px; height: 40px; border-radius: 11px; background: rgba(255,255,255,.12); display: grid; place-items: center; color: #c7d2fe; flex-shrink: 0; }
+.ns-tip-col-text { flex: 1; min-width: 0; }
+.ns-tip-col-title { font-weight: 700; font-size: 14.5px; margin-bottom: 5px; }
+.ns-tip-col-body { font-size: 13px; line-height: 1.55; color: #c3ccf2; }
 
 /* ══════════════════════════ MODAL + DIALOG ══════════════════ */
 .ns-modal-overlay { position: fixed; inset: 0; background: rgba(15,23,42,.55); backdrop-filter: blur(3px); display: grid; place-items: center; z-index: 200; padding: 20px; animation: ns-fade .2s; }
@@ -876,7 +877,8 @@
 @media screen and (max-width: 1023px) {
   .ns-hero { column-gap: clamp(16px, 3vw, 32px); }
   .ns-hero-art { min-height: 0; }
-  .ns-tips-cols { gap: 32px; }
+  .ns-tips-inner { grid-template-columns: 1fr; gap: 20px; }
+  .ns-tips-cols { gap: 18px; }
   .ns-results-container { grid-template-columns: 1fr; }
   .ns-grade-card { grid-template-columns: 1fr; gap: 26px; }
   /* Sidebar menjadi drawer di sini, jadi modal kembali pusat penuh */
@@ -904,14 +906,7 @@
   .ns-how-card-num { font-size: 46px; top: 4px; right: 12px; }
   .ns-ggl-grid { grid-template-columns: 1fr; }
   .ns-crop-stage { grid-template-columns: 1fr; }
-  .ns-tips-cols { grid-template-columns: 1fr; gap: 28px; }
-  .ns-tips-card { padding: 32px 24px; }
-  .ns-tips-head { margin-bottom: 36px; }
-  .ns-tips-head h3 { font-size: 26px; }
-  .ns-tips-head p { font-size: 14px; }
-  .ns-tip-icon { width: 56px; height: 56px; margin-bottom: 16px; }
-  .ns-tip-title { font-size: 16px; margin-bottom: 8px; }
-  .ns-tip-body { font-size: 13px; }
+  .ns-tips-cols { grid-template-columns: 1fr; }
   .ns-ptips { grid-template-columns: 1fr; gap: 22px; }
   .ns-crop-actions { flex-direction: column; align-items: stretch; }
   .ns-crop-tools { justify-content: space-between; }
@@ -922,14 +917,6 @@
 }
 
 @media screen and (max-width: 600px) {
-  .ns-tips-card { padding: 28px 20px; }
-  .ns-tips-head { margin-bottom: 32px; }
-  .ns-tips-head h3 { font-size: 22px; }
-  .ns-tips-head p { font-size: 13px; }
-  .ns-tips-cols { gap: 24px; }
-  .ns-tip-icon { width: 52px; height: 52px; border-radius: 18px; margin-bottom: 14px; }
-  .ns-tip-title { font-size: 15px; }
-  .ns-tip-body { font-size: 12.5px; }
   .ns-hero {
     grid-template-columns: minmax(0, 1fr) clamp(90px, 24vw, 120px);
     grid-template-areas:
@@ -976,7 +963,6 @@
   .ns-chart-title { font-size: 19px; }
   .ns-tips-card { padding: 26px 22px; }
   .ns-tips-head h3 { font-size: 22px; }
-  .ns-tips-cols { gap: 16px; }
   .ns-result-card { padding: 18px; }
   .ns-result-footer .ns-btn { min-width: 0; width: 100%; }
   .ns-serving-value { font-size: 14px; }
