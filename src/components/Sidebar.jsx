@@ -15,7 +15,7 @@ const SUBS = {
   hasil: ['Selesai', 'Selesai', 'Selesai'],
 }
 
-export default function Sidebar({ step, mode, message, open, onClose }) {
+export default function Sidebar({ step, mode, message, open, onClose, onBrandClick }) {
   const active = STEP_INDEX[step] ?? 0
   const subs = SUBS[step] || SUBS.beranda
   const allDone = step === 'hasil'
@@ -29,7 +29,7 @@ export default function Sidebar({ step, mode, message, open, onClose }) {
   return (
     <aside className={`ns-sidebar ${open ? 'open' : ''}`} aria-hidden={!open}>
       <div className="ns-sidebar-top">
-        <div className="ns-brand">
+        <button className="ns-brand ns-brand-button" type="button" onClick={onBrandClick}>
           <div className="ns-logo">
             <img src={logo} alt="NutriScan AI" />
           </div>
@@ -39,7 +39,7 @@ export default function Sidebar({ step, mode, message, open, onClose }) {
             </div>
             <div className="ns-brand-sub">Nutrition Scanner & Classifier</div>
           </div>
-        </div>
+        </button>
         <button className="ns-sb-close" onClick={onClose} aria-label="Tutup menu samping" title="Tutup menu">
           <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
             <path d="m15 18-6-6 6-6" />
