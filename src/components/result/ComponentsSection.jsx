@@ -46,6 +46,12 @@ function ComponentCard({ comp, calc, fields }) {
   const kemVal = kemKey && calc.per_kemasan ? calc.per_kemasan[kemKey] : null
   const kemTxt = kemVal != null ? `${asIs(kemVal)} ${unit}` : null
 
+  const normalLimit = {
+    gula: '4 sendok makan (50 g) per hari',
+    garam: '1 sendok teh (5 g) per hari',
+    lemak_jenuh: '5 sendok makan (67 g) per hari',
+  }
+
   // Catatan komposisi gula: sukrosa & laktosa (laktosa dikurangi saat hitung level)
   const chips = []
   if (fkey === 'gula') {
@@ -72,6 +78,11 @@ function ComponentCard({ comp, calc, fields }) {
       <div className="ns-ggl-detail">
         <span>per sajian <b>{raw}</b></span>
         {kemTxt && <span>per kemasan <b>{kemTxt}</b></span>}
+      </div>
+
+      <div className="ns-ggl-limit">
+        <span>Ambang batas konsumsi normal</span>
+        <strong>{normalLimit[fkey]}</strong>
       </div>
 
       {chips.length > 0 && (
