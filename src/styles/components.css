@@ -405,14 +405,18 @@
   display: grid; place-items: center;
 }
 
-/* Cincin panduan samar untuk kesan berlapis */
-.ns-scan-guide {
+/* Lingkaran scan hijau animasi */
+.ns-scan-ring {
   position: absolute; top: 50%; left: 50%; z-index: 1;
-  border-radius: 50%; border: 1px solid rgba(34, 197, 94, .12);
-  transform: translate(-50%, -50%);
+  width: 300px; height: 300px; margin: -150px 0 0 -150px;
+  border-radius: 50%; border: 2px solid rgba(34, 197, 94, .22);
+  transform: scale(.72);
+  opacity: 0;
+  animation: ns-scan-ring 3.6s ease-in-out infinite;
 }
-.ns-scan-guide.g1 { width: 300px; height: 300px; }
-.ns-scan-guide.g2 { width: 244px; height: 244px; border-color: rgba(34, 197, 94, .16); }
+.ns-scan-ring.alt {
+  animation-delay: 1.25s;
+}
 
 /* Ripple ganda: lingkaran pulse scan dengan animasi muncul dan membesar */
 .ns-ripple {
@@ -464,10 +468,33 @@
 }
 
 @keyframes ns-scan-line {
-  0%, 100% { transform: translateY(-50%); opacity: 1; }
-  25% { transform: translateY(-30%) scaleX(1.05); opacity: .9; }
-  50% { transform: translateY(12%) scaleX(1.12); opacity: .95; }
-  75% { transform: translateY(-10%) scaleX(1.08); opacity: .92; }
+  0%, 100% { transform: translateY(-50%) scaleX(1); opacity: 1; }
+  20% { transform: translateY(-32%) scaleX(1.02); opacity: .92; }
+  50% { transform: translateY(12%) scaleX(1.08); opacity: .98; }
+  80% { transform: translateY(-18%) scaleX(1.04); opacity: .94; }
+}
+
+@keyframes ns-scan-ring {
+  0% {
+    transform: translate(-50%, -50%) scale(.64);
+    opacity: 0;
+    border-color: rgba(34, 197, 94, .14);
+  }
+  35% {
+    transform: translate(-50%, -50%) scale(.86);
+    opacity: .24;
+    border-color: rgba(34, 197, 94, .28);
+  }
+  65% {
+    transform: translate(-50%, -50%) scale(1.02);
+    opacity: .17;
+    border-color: rgba(34, 197, 94, .4);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.24);
+    opacity: 0;
+    border-color: rgba(22, 163, 74, .55);
+  }
 }
 
 @keyframes ns-ripple-pulse {
