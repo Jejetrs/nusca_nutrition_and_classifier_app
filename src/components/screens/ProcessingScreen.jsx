@@ -1,3 +1,4 @@
+// ProcessingScreen.jsx
 import { useEffect, useRef, useState } from 'react'
 import { analyzeImage } from '../../api/client.js'
 import { Spinner } from '@/components/ui/spinner'
@@ -58,9 +59,11 @@ export default function ProcessingScreen({ blob, previewUrl, onDone, onError }) 
       <div className="ns-scan-stage">
         <div className="ns-scan-chip"><CpuIcon /></div>
 
-        {/* Pulse rings di belakang lensa utama */}
-        <span className="ns-pulse-ring" aria-hidden="true" />
-        <span className="ns-pulse-ring alt" aria-hidden="true" />
+        {/* Triple loading ring: membesar dari kecil ke besar,
+            semakin besar radiusnya semakin jelas warnanya (bukan fade-out) */}
+        <span className="ns-pulse-ring ring-1" aria-hidden="true" />
+        <span className="ns-pulse-ring ring-2" aria-hidden="true" />
+        <span className="ns-pulse-ring ring-3" aria-hidden="true" />
 
         {/* Buah & minuman mengorbit melingkar */}
         <div className="ns-orbit" aria-hidden="true">
@@ -76,7 +79,7 @@ export default function ProcessingScreen({ blob, previewUrl, onDone, onError }) 
           })}
         </div>
 
-        {/* Lensa tengah: pratinjau label + garis pindai */}
+        {/* Lensa tengah: pratinjau label + garis pindai turun berulang dari atas */}
         <div className="ns-lens">
           {previewUrl ? <img src={previewUrl} alt="Label sedang dianalisis" /> : null}
           <div className="ns-lens-line" />
