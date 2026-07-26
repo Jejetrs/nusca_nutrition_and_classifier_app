@@ -414,15 +414,19 @@
 .ns-scan-guide.g1 { width: 300px; height: 300px; }
 .ns-scan-guide.g2 { width: 244px; height: 244px; border-color: rgba(34, 197, 94, .16); }
 
-/* Ripple ganda: lingkaran hijau statis */
+/* Ripple ganda: lingkaran pulse scan dengan animasi muncul dan membesar */
 .ns-ripple {
   position: absolute; top: 50%; left: 50%; z-index: 1;
   width: 300px; height: 300px; margin: -150px 0 0 -150px;
-  border-radius: 50%; border: 2px solid #22c55e;
-  transform: scale(1); opacity: .16;
-  animation: none;
+  border-radius: 50%; border: 2px solid rgba(148, 163, 184, .36);
+  transform: scale(.5);
+  opacity: 0;
+  animation: ns-ripple-pulse 2.6s ease-in-out infinite;
 }
-.ns-ripple.rb { border-color: #4ade80; animation: none; }
+.ns-ripple.rb {
+  border-color: rgba(148, 163, 184, .24);
+  animation: ns-ripple-pulse 2.6s ease-in-out infinite .9s;
+}
 
 /* Buah & minuman mengorbit; tiap item dilawan-putar agar tetap tegak */
 .ns-orbit { position: absolute; inset: 0; z-index: 3; animation: ns-orbit-spin 20s linear infinite; }
@@ -454,6 +458,37 @@
   background: linear-gradient(90deg, transparent, #34d399, transparent);
   box-shadow: 0 0 12px #34d399;
   transform: translateY(-50%);
+  animation: ns-scan-line 2.4s ease-in-out infinite;
+}
+
+@keyframes ns-scan-line {
+  0%, 100% { transform: translateY(-50%); opacity: 1; }
+  25% { transform: translateY(-30%) scaleX(1.05); opacity: .9; }
+  50% { transform: translateY(12%) scaleX(1.12); opacity: .95; }
+  75% { transform: translateY(-10%) scaleX(1.08); opacity: .92; }
+}
+
+@keyframes ns-ripple-pulse {
+  0% {
+    transform: scale(.32);
+    opacity: 0;
+    border-color: rgba(148, 163, 184, .28);
+  }
+  40% {
+    transform: scale(.86);
+    opacity: .28;
+    border-color: rgba(148, 163, 184, .28);
+  }
+  65% {
+    transform: scale(1.12);
+    opacity: .18;
+    border-color: rgba(52, 211, 153, .52);
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+    border-color: rgba(34, 197, 94, .42);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
