@@ -780,21 +780,19 @@
 /* ══════════════════════════ CONSUMPTION TIPS ════════════════ */
 .ns-tips-card {
   position: relative; overflow: hidden;
-  background: linear-gradient(135deg, #1a7a3d 0%, #2d9b5e 100%);
+  background: linear-gradient(135deg, #1e8449 0%, #239155 100%);
   border-radius: var(--r-lg); color: #fff; padding: 40px 32px;
-  margin-bottom: 20px; box-shadow: 0 8px 32px rgba(26, 122, 61, .2);
+  margin-bottom: 20px; box-shadow: 0 8px 32px rgba(26, 122, 61, .22);
 }
-.ns-tips-inner { position: relative; display: grid; grid-template-columns: 1fr; gap: 32px; }
-.ns-tips-head { text-align: left; margin-bottom: 8px; }
-.ns-tips-head h3 { font-size: 28px; font-weight: 800; letter-spacing: -.4px; color: #fff; }
-.ns-tips-head p { margin-top: 8px; color: rgba(255, 255, 255, 0.85); font-size: 14px; line-height: 1.6; max-width: 520px; }
-.ns-tips-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.ns-tips-head { text-align: left; margin-bottom: 48px; }
+.ns-tips-head h3 { font-size: 32px; font-weight: 800; letter-spacing: -.5px; color: #fff; margin: 0; }
+.ns-tips-head p { margin-top: 12px; color: rgba(255, 255, 255, 0.88); font-size: 15px; line-height: 1.6; max-width: 600px; margin-bottom: 0; }
+.ns-tips-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
 .ns-tip-card { display: flex; flex-direction: column; align-items: center; text-align: center; }
-.ns-tip-icon { width: 56px; height: 56px; border-radius: 16px; background: rgba(255, 255, 255, 0.15); display: grid; place-items: center; color: #fff; flex-shrink: 0; margin-bottom: 16px; transition: all .3s ease; }
-.ns-tip-card:hover .ns-tip-icon { background: rgba(255, 255, 255, 0.25); transform: translateY(-4px); }
-.ns-tip-content { flex: 1; min-width: 0; }
-.ns-tip-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #fff; }
-.ns-tip-body { font-size: 13px; line-height: 1.6; color: rgba(255, 255, 255, 0.9); margin: 0; }
+.ns-tip-icon { width: 64px; height: 64px; border-radius: 22px; background: rgba(255, 255, 255, 0.18); display: grid; place-items: center; color: #fff; flex-shrink: 0; margin-bottom: 20px; transition: all .3s ease; }
+.ns-tip-card:hover .ns-tip-icon { background: rgba(255, 255, 255, 0.28); transform: translateY(-4px); }
+.ns-tip-title { font-weight: 700; font-size: 17px; margin-bottom: 10px; color: #fff; margin-top: 0; }
+.ns-tip-body { font-size: 14px; line-height: 1.65; color: rgba(255, 255, 255, 0.87); margin: 0; }
 
 /* ══════════════════════════ MODAL + DIALOG ══════════════════ */
 .ns-modal-overlay { position: fixed; inset: 0; background: rgba(15,23,42,.55); backdrop-filter: blur(3px); display: grid; place-items: center; z-index: 200; padding: 20px; animation: ns-fade .2s; }
@@ -878,8 +876,7 @@
 @media screen and (max-width: 1023px) {
   .ns-hero { column-gap: clamp(16px, 3vw, 32px); }
   .ns-hero-art { min-height: 0; }
-  .ns-tips-inner { grid-template-columns: 1fr; gap: 24px; }
-  .ns-tips-cols { gap: 20px; }
+  .ns-tips-cols { gap: 32px; }
   .ns-results-container { grid-template-columns: 1fr; }
   .ns-grade-card { grid-template-columns: 1fr; gap: 26px; }
   /* Sidebar menjadi drawer di sini, jadi modal kembali pusat penuh */
@@ -907,9 +904,14 @@
   .ns-how-card-num { font-size: 46px; top: 4px; right: 12px; }
   .ns-ggl-grid { grid-template-columns: 1fr; }
   .ns-crop-stage { grid-template-columns: 1fr; }
-  .ns-tips-cols { grid-template-columns: 1fr; }
-  .ns-tips-card { padding: 28px 22px; }
-  .ns-tips-head h3 { font-size: 24px; }
+  .ns-tips-cols { grid-template-columns: 1fr; gap: 28px; }
+  .ns-tips-card { padding: 32px 24px; }
+  .ns-tips-head { margin-bottom: 36px; }
+  .ns-tips-head h3 { font-size: 26px; }
+  .ns-tips-head p { font-size: 14px; }
+  .ns-tip-icon { width: 56px; height: 56px; margin-bottom: 16px; }
+  .ns-tip-title { font-size: 16px; margin-bottom: 8px; }
+  .ns-tip-body { font-size: 13px; }
   .ns-ptips { grid-template-columns: 1fr; gap: 22px; }
   .ns-crop-actions { flex-direction: column; align-items: stretch; }
   .ns-crop-tools { justify-content: space-between; }
@@ -920,6 +922,14 @@
 }
 
 @media screen and (max-width: 600px) {
+  .ns-tips-card { padding: 28px 20px; }
+  .ns-tips-head { margin-bottom: 32px; }
+  .ns-tips-head h3 { font-size: 22px; }
+  .ns-tips-head p { font-size: 13px; }
+  .ns-tips-cols { gap: 24px; }
+  .ns-tip-icon { width: 52px; height: 52px; border-radius: 18px; margin-bottom: 14px; }
+  .ns-tip-title { font-size: 15px; }
+  .ns-tip-body { font-size: 12.5px; }
   .ns-hero {
     grid-template-columns: minmax(0, 1fr) clamp(90px, 24vw, 120px);
     grid-template-areas:
