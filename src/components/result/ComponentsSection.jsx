@@ -1,5 +1,4 @@
 import {
-  NL_BATAS,
   NL_OFFICIAL,
   NA_COLOR,
   componentInsight,
@@ -47,7 +46,7 @@ function ComponentCard({ comp, calc, fields }) {
   const kemVal = kemKey && calc.per_kemasan ? calc.per_kemasan[kemKey] : null
   const kemTxt = kemVal != null ? `${asIs(kemVal)} ${unit}` : null
 
-  const thresholdText = getThresholdText(fkey, unit)
+  const thresholdText = getDailyThresholdText(fkey)
 
   // Catatan komposisi gula: sukrosa & laktosa (laktosa dikurangi saat hitung level)
   const chips = []
@@ -77,11 +76,6 @@ function ComponentCard({ comp, calc, fields }) {
         {kemTxt && <span>per kemasan <b>{kemTxt}</b></span>}
       </div>
 
-      <div className="ns-ggl-limit">
-        <span>Ambang batas normal konsumsi</span>
-        <strong>{thresholdText}</strong>
-      </div>
-
       {chips.length > 0 && (
         <div className="ns-ggl-chips">
           {chips.map((c) => <span key={c}>{c}</span>)}
@@ -108,6 +102,7 @@ function ComponentCard({ comp, calc, fields }) {
       {insight ? (
         <div className={`ns-ggl-insight ins-${lv.toLowerCase()}`}>
           <div className="ns-ggl-insight-rule">Level {lv}: {bandText(fkey, lv, unit)}</div>
+          <div className="ns-ggl-insight-threshold">{thresholdText}</div>
           <div className="ns-ggl-insight-text">{cap(insight)}</div>
         </div>
       ) : (
@@ -117,13 +112,12 @@ function ComponentCard({ comp, calc, fields }) {
   )
 }
 
-function getThresholdText(fkey, unit) {
-  const bounds = NL_BATAS[fkey]
-  if (!bounds) return 'Tidak tersedia'
-  const [a, b, c] = bounds
-  const fmt = (value) => String(value).replace('.', ',')
-  const unitLabel = unit === 'mg' ? 'mg' : 'g'
-  return `A ≤ ${fmt(a)} ${unitLabel} · B ${fmt(a)}–${fmt(b)} ${unitLabel} · C ${fmt(b)}–${fmt(c)} ${unitLabel}`
+function getDailyThresholdText(fkey) {
+  return {
+    gula: 'Batas harian: 50 g gula per hari',
+    garam: 'Batas harian: 5 g garam per hari',
+    lemak_jenuh: 'Batas harian: 67 g lemak jenuh per hari',
+  }[fkey] || 'Batas harian tidak tersedia'
 }
 
 function cap(s) {
