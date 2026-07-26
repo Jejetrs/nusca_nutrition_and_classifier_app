@@ -82,7 +82,7 @@ export default function NutriLevelDialog({ active, onClose }) {
                   {g}
                 </div>
                 <div className="ns-nlinfo-text">
-                  <b>Level {g}</b>{g === 'A' ? ': ' : ' — '}{NL_DESC[g]}
+                  <b>Level {g}:</b> {NL_DESC[g]}
                 </div>
               </div>
             ))}
