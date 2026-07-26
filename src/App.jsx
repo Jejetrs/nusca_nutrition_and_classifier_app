@@ -6,44 +6,11 @@ import ProcessingScreen from './components/screens/ProcessingScreen.jsx'
 import ResultScreen from './components/screens/ResultScreen.jsx'
 import { getHealth } from './api/client.js'
 
-const STORAGE_KEY = 'ns-app-state'
-
-function fileToDataUrl(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.onload = () => resolve(reader.result)
-    reader.onerror = reject
-    reader.readAsDataURL(file)
-  })
-}
-
-function blobToDataUrl(blob) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.onload = () => resolve(reader.result)
-    reader.onerror = reject
-    reader.readAsDataURL(blob)
-  })
-}
-
-function dataUrlToBlob(dataUrl) {
-  const [header, body] = dataUrl.split(',')
-  const isBase64 = header.includes('base64')
-  const raw = isBase64 ? atob(body) : decodeURIComponent(body)
-  const mime = header.match(/:(.*?);/)[1]
-  const u8 = new Uint8Array(raw.length)
-  for (let i = 0; i < raw.length; i += 1) {
-    u8[i] = raw.charCodeAt(i)
-  }
-  return new Blob([u8], { type: mime })
-}
-
 // Alur: 'beranda' -> 'pangkas' -> 'memproses' -> 'hasil'
 export default function App() {
   const [step, setStep] = useState('beranda')
-  const [original, setOriginal] = useState(null) // { url, dataUrl, name }
+  const [original, setOriginal] = useState(null) // { url, name }
   const [cropped, setCropped] = useState(null)
-  const [croppedDataUrl, setCroppedDataUrl] = useState(null)
   const [result, setResult] = useState(null)
   const [status, setStatus] = useState({ mode: 'demo', message: '' })
 
@@ -55,42 +22,6 @@ export default function App() {
   useEffect(() => {
     getHealth().then((h) => setStatus({ mode: h.mode, message: h.message }))
   }, [])
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-    try {
-      const raw = sessionStorage.getItem(STORAGE_KEY)
-      if (!raw) return
-      const stored = JSON.parse(raw)
-      if (stored.originalDataUrl) {
-        setOriginal({
-          url: stored.originalDataUrl,
-          dataUrl: stored.originalDataUrl,
-          name: stored.originalName || 'label.jpg',
-        })
-      }
-      if (stored.croppedDataUrl) {
-        setCropped(dataUrlToBlob(stored.croppedDataUrl))
-        setCroppedDataUrl(stored.croppedDataUrl)
-      }
-      if (stored.step) {
-        setStep(stored.step)
-      }
-    } catch (error) {
-      console.warn('Gagal memuat state dari sessionStorage', error)
-    }
-  }, [])
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-    const state = {
-      step,
-      originalDataUrl: original?.dataUrl || null,
-      originalName: original?.name || null,
-      croppedDataUrl,
-    }
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state))
-  }, [step, original, croppedDataUrl])
 
   // Selalu gulir ke atas setiap kali langkah berubah
   useEffect(() => {
@@ -111,26 +42,21 @@ export default function App() {
   }, [])
 
   const reset = useCallback(() => {
-    if (typeof window !== 'undefined') {
-      sessionStorage.removeItem(STORAGE_KEY)
-    }
+    if (original?.url) URL.revokeObjectURL(original.url)
     setOriginal(null)
     setCropped(null)
-    setCroppedDataUrl(null)
     setResult(null)
     setStep('beranda')
-  }, [])
+  }, [original])
 
-  const handlePhoto = async (file) => {
-    const dataUrl = await fileToDataUrl(file)
-    setOriginal({ url: dataUrl, dataUrl, name: file.name || 'label.jpg' })
+  const handlePhoto = (file) => {
+    if (original?.url) URL.revokeObjectURL(original.url)
+    setOriginal({ url: URL.createObjectURL(file), name: file.name || 'label.jpg' })
     setStep('pangkas')
   }
 
-  const handleCropped = async (blob) => {
-    const dataUrl = await blobToDataUrl(blob)
+  const handleCropped = (blob) => {
     setCropped(blob)
-    setCroppedDataUrl(dataUrl)
     setStep('memproses')
   }
 
@@ -145,10 +71,6 @@ export default function App() {
         mode={status.mode}
         message={status.message}
         open={sidebarOpen}
-        onBrandClick={() => {
-          setStep('beranda')
-          if (window.innerWidth < 1024) setSidebarOpen(false)
-        }}
         onClose={() => setSidebarOpen(false)}
       />
 
