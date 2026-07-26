@@ -101,8 +101,10 @@ function ComponentCard({ comp, calc, fields }) {
 
       {insight ? (
         <div className={`ns-ggl-insight ins-${lv.toLowerCase()}`}>
-          <div className="ns-ggl-insight-rule">Level {lv}: {bandText(fkey, lv, unit)}</div>
-          <div className="ns-ggl-insight-threshold">{thresholdText}</div>
+          <div className="ns-ggl-insight-rule">
+            <span>Level {lv}: {bandText(fkey, lv, unit)}</span>
+            <span className="ns-ggl-insight-threshold">{thresholdText}</span>
+          </div>
           <div className="ns-ggl-insight-text">{cap(insight)}</div>
         </div>
       ) : (
@@ -114,9 +116,9 @@ function ComponentCard({ comp, calc, fields }) {
 
 function getDailyThresholdText(fkey) {
   return {
-    gula: 'Batas harian: 50 g gula per hari',
-    garam: 'Batas harian: 5 g garam per hari',
-    lemak_jenuh: 'Batas harian: 67 g lemak jenuh per hari',
+    gula: '50 g/hari',
+    garam: '5 g/hari',
+    lemak_jenuh: '67 g/hari',
   }[fkey] || 'Batas harian tidak tersedia'
 }
 
